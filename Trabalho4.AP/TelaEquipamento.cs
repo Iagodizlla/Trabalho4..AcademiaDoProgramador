@@ -24,7 +24,7 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.Write("Escolha uma das opções: ");
-            char operacaoEscolhida = Convert.ToChar(Console.ReadLine());
+            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!);
 
             return operacaoEscolhida;
         }
@@ -38,10 +38,10 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.Write("Digite o nome do equipamento: ");
-            string nome = Console.ReadLine();
+            string nome = Console.ReadLine()!;
 
             Console.Write("Digite o nome do fabricante do equipamento: ");
-            string fabricante = Console.ReadLine();
+            string fabricante = Console.ReadLine()!;
 
             Console.Write("Digite o preço de aquisição do equipamento: R$ ");
             decimal precoAquisicao = Convert.ToDecimal(Console.ReadLine());
@@ -78,10 +78,10 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.Write("Digite o nome do equipamento: ");
-            string nome = Console.ReadLine();
+            string nome = Console.ReadLine()!;
 
             Console.Write("Digite o nome do fabricante do equipamento: ");
-            string fabricante = Console.ReadLine();
+            string fabricante = Console.ReadLine()!;
 
             Console.Write("Digite o preço de aquisição do equipamento: R$ ");
             decimal precoAquisicao = Convert.ToDecimal(Console.ReadLine());

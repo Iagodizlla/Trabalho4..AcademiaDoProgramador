@@ -47,7 +47,7 @@ namespace Trabalho4.AP
 
                 else if (equipamentos[i].Id == id)
                 {
-                    equipamentos[i] = null;
+                    equipamentos[i] = null!;
                     return true;
                 }
             }
@@ -73,7 +73,7 @@ namespace Trabalho4.AP
                     return e;
             }
 
-            return null;
+            return null!;
         }
 
         public bool ExisteEquipamento(int id)
