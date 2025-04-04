@@ -10,9 +10,10 @@ namespace Trabalho4.AP
     {
         public static char ApresentarMenuPrincipal()
         {
-            ExibirCabecalho();
+            ExibirCabecalhoEquipamento();
 
             Console.WriteLine("1 - Gerência de Equipamentos");
+            Console.WriteLine("2 - Gerência de Chamados");
             Console.WriteLine("S - Sair");
 
             Console.WriteLine();
@@ -24,12 +25,22 @@ namespace Trabalho4.AP
             return opcaoEscolhida;
         }
 
-        public static void ExibirCabecalho()
+        public static void ExibirCabecalhoEquipamento()
         {
             Console.Clear();
 
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("|        Gestão de Equipamentos        |");
+            Console.WriteLine("----------------------------------------");
+
+            Console.WriteLine();
+        }
+        public static void ExibirCabecalhoChamado()
+        {
+            Console.Clear();
+
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("|          Gestão de Chamados          |");
             Console.WriteLine("----------------------------------------");
 
             Console.WriteLine();

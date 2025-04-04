@@ -19,7 +19,7 @@ namespace Trabalho4.AP
         }
         public char ApresentarMenuEquipamento()
         {
-            Menu.ExibirCabecalho();
+            Menu.ExibirCabecalhoEquipamento();
 
             Console.WriteLine("1 - Cadastrar Equipamento");
             Console.WriteLine("2 - Editar Equipamento");
@@ -35,27 +35,9 @@ namespace Trabalho4.AP
 
             return operacaoEscolhida;
         }
-        public char ApresentarMenuChamado()
-        {
-            Menu.ExibirCabecalho();
-
-            Console.WriteLine("1 - Cadastrar Chamado");
-            Console.WriteLine("2 - Editar Chamado");
-            Console.WriteLine("3 - Excluir Chamado");
-            Console.WriteLine("4 - Visualizar Chamados");
-
-            Console.WriteLine("S - Voltar");
-
-            Console.WriteLine();
-
-            Console.Write("Escolha uma das opções: ");
-            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!.ToUpper());
-
-            return operacaoEscolhida;
-        }
         public void CadastrarEquipamento()
         {
-            Menu.ExibirCabecalho();
+            Menu.ExibirCabecalhoEquipamento();
 
             Console.WriteLine("Cadastrando Equipamento...");
 
@@ -82,7 +64,7 @@ namespace Trabalho4.AP
 
         public void EditarEquipamento()
         {
-            Menu.ExibirCabecalho();
+            Menu.ExibirCabecalhoEquipamento();
 
             Console.WriteLine("Editando Equipamento...");
 
@@ -128,7 +110,7 @@ namespace Trabalho4.AP
 
         public void ExcluirEquipamento()
         {
-            Menu.ExibirCabecalho();
+            Menu.ExibirCabecalhoEquipamento();
 
             Console.WriteLine("Excluindo Equipamento...");
 
@@ -160,7 +142,7 @@ namespace Trabalho4.AP
         {
             if (exibirTitulo)
             {
-                Menu.ExibirCabecalho();
+                Menu.ExibirCabecalhoEquipamento();
 
                 Console.WriteLine("Visualizando Equipamentos...");
             }
@@ -190,6 +172,22 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Notificador.ExibirMensagem("Pressione ENTER para continuar...", ConsoleColor.DarkYellow);
+        }
+        public void AcharEquipamentoChamado()
+        {
+            Equipamento[] equipamentosCadastrados = repositorio.SelecionarEquipamentos();
+            for (int i = 0; i < equipamentosCadastrados.Length; i++)
+            {
+                Equipamento e = equipamentosCadastrados[i];
+
+                if (e == null)
+                    continue;
+
+                Console.WriteLine(
+                    "{0, -7} | {1, -18} | {2, -11} | {3, -18} | {4, -12} | {5, -8}",
+                    e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
+                );
+            }
         }
     }
 }
