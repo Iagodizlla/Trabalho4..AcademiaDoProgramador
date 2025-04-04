@@ -19,7 +19,7 @@ namespace Trabalho4.AP
 
             Console.Write("Escolha uma das opções: ");
 
-            char opcaoEscolhida = Console.ReadLine()![0];
+            char opcaoEscolhida = Console.ReadLine()!.ToUpper()[0];
 
             return opcaoEscolhida;
         }

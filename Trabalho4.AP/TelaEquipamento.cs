@@ -10,7 +10,14 @@ namespace Trabalho4.AP
     {
         public RepositorioEquipamento repositorio = new RepositorioEquipamento();
 
-        public char ApresentarMenu()
+        public void EquipamentosIniciais()
+        {
+            repositorio.CadastrarEquipamento(new Equipamento("Notebook", "Dell", 4100, new DateTime(2022, 02, 22)));
+            repositorio.CadastrarEquipamento(new Equipamento("Impressora", "HP", 900, new DateTime(2012, 02, 22)));
+            repositorio.CadastrarEquipamento(new Equipamento("Notebook", "Dell", 8100, new DateTime(2025, 01, 02)));
+            repositorio.CadastrarEquipamento(new Equipamento("Telefone", "Nookia", 200, new DateTime(2000, 11, 30)));
+        }
+        public char ApresentarMenuEquipamento()
         {
             Menu.ExibirCabecalho();
 
@@ -24,11 +31,28 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.Write("Escolha uma das opções: ");
-            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!);
+            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!.ToUpper());
 
             return operacaoEscolhida;
         }
+        public char ApresentarMenuChamado()
+        {
+            Menu.ExibirCabecalho();
 
+            Console.WriteLine("1 - Cadastrar Chamado");
+            Console.WriteLine("2 - Editar Chamado");
+            Console.WriteLine("3 - Excluir Chamado");
+            Console.WriteLine("4 - Visualizar Chamados");
+
+            Console.WriteLine("S - Voltar");
+
+            Console.WriteLine();
+
+            Console.Write("Escolha uma das opções: ");
+            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!.ToUpper());
+
+            return operacaoEscolhida;
+        }
         public void CadastrarEquipamento()
         {
             Menu.ExibirCabecalho();
@@ -144,7 +168,7 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -10} | {5, -10}",
+                "{0, -7} | {1, -18} | {2, -11} | {3, -18} | {4, -12} | {5, -8}",
                 "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
             );
 
@@ -158,7 +182,7 @@ namespace Trabalho4.AP
                     continue;
 
                 Console.WriteLine(
-                    "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -10} | {5, -10}",
+                    "{0, -7} | {1, -18} | {2, -11} | {3, -18} | {4, -12} | {5, -8}",
                     e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
                 );
             }

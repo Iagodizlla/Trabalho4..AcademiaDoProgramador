@@ -13,7 +13,6 @@ namespace Trabalho4.AP
         public void CadastrarEquipamento(Equipamento novoEquipamento)
         {
             novoEquipamento.Id = GeradorId.GerarIdEquipamento();
-
             RegistrarItem(novoEquipamento);
         }
 
