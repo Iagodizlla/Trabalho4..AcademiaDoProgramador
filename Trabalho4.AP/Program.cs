@@ -9,6 +9,7 @@
             bool opcaoSairEscolhida = false;
 
             telaEquipamento.EquipamentosIniciais();
+            telaChamado.ChamadosIniciais();
 
             while (!opcaoSairEscolhida)
             {
@@ -57,8 +58,8 @@
                         //else if (operacaoEscolhida == '3')
                         //    telaEquipamento.ExcluirEquipamento();
 
-                        //else if (operacaoEscolhida == '4')
-                        //    telaEquipamento.VisualizarEquipamentos(true);
+                        else if (operacaoEscolhida == '4')
+                            telaChamado.VisualizarChamados(true);
                         #endregion
                         break;
                     case 'S':

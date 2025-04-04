@@ -8,9 +8,19 @@ namespace Trabalho4.AP
 {
     public static class Menu
     {
+        public static void ExibirCabecalho()
+        {
+            Console.Clear();
+
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("|   Gestão de Equipamentos e Chamados  |");
+            Console.WriteLine("----------------------------------------");
+
+            Console.WriteLine();
+        }
         public static char ApresentarMenuPrincipal()
         {
-            ExibirCabecalhoEquipamento();
+            ExibirCabecalho();
 
             Console.WriteLine("1 - Gerência de Equipamentos");
             Console.WriteLine("2 - Gerência de Chamados");

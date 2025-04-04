@@ -10,6 +10,12 @@ namespace Trabalho4.AP
     {
         public RepositorioEquipamento repositorio = new RepositorioEquipamento();
         public RegistroChamado registro = new RegistroChamado();
+        public void ChamadosIniciais()
+        {
+            registro.CadastrarChamado(new Chamado("Uva", "Comer uvas", new DateTime(2022, 02, 22)));
+            registro.CadastrarChamado(new Chamado("Uva2", "Comer uvas2", new DateTime(2022, 04, 12)));
+            registro.CadastrarChamado(new Chamado("Uva3", "Comer uvas3", new DateTime(2023, 01, 01)));
+        }
         public char ApresentarMenuChamado()
         {
             Menu.ExibirCabecalhoEquipamento();
@@ -72,8 +78,8 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -7} | {1, -18} | {2, -7} | {5, -8}",
-                "Id", "Titulo", "Id E.", "Data de Fabricação"
+                "{0, -7} | {1, -18} | {2, -37} | {5, -8}",
+                "Id", "Titulo", "Descricao", "Data de Abertura"
             );
 
             Chamado[] chamadoCadastrados = registro.SelecionarChamado();
@@ -86,8 +92,8 @@ namespace Trabalho4.AP
                     continue;
 
                 Console.WriteLine(
-                    "{0, -7} | {1, -18} | {2, -7} | {5, -8}",
-                    e.Id, e.Titulo, e.Equipamento, e.DataAbertura.ToShortDateString()
+                    "{0, -7} | {1, -18} | {2, -37} | {5, -8}",
+                    e.Id, e.Titulo, e.Descricao, e.DataAbertura.ToShortDateString()
                 );
             }
 
