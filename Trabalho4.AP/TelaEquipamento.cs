@@ -31,7 +31,7 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.Write("Escolha uma das opções: ");
-            char operacaoEscolhida = Convert.ToChar(Console.ReadLine()!.ToUpper());
+            char operacaoEscolhida = Console.ReadLine()!.ToUpper()[0];
 
             return operacaoEscolhida;
         }

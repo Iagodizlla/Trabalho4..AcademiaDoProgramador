@@ -71,10 +71,8 @@ namespace Trabalho4.AP
                 else if (e.Id == id)
                     return e;
             }
-
             return null!;
         }
-
         public bool ExisteEquipamento(int id)
         {
             for (int i = 0; i < equipamentos.Length; i++)

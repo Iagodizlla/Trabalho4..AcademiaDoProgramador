@@ -52,8 +52,8 @@
                         if (operacaoEscolhida == '1')
                             telaChamado.CadastrarChamado();
 
-                        //else if (operacaoEscolhida == '2')
-                        //    telaEquipamento.EditarEquipamento();
+                        else if (operacaoEscolhida == '2')
+                            telaChamado.EditarChamado();
 
                         //else if (operacaoEscolhida == '3')
                         //    telaEquipamento.ExcluirEquipamento();
