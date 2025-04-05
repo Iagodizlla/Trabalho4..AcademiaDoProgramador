@@ -61,7 +61,6 @@ namespace Trabalho4.AP
 
             Notificador.ExibirMensagem("O equipamento foi cadastrado com sucesso!", ConsoleColor.Green);
         }
-
         public void EditarEquipamento()
         {
             Menu.ExibirCabecalhoEquipamento();

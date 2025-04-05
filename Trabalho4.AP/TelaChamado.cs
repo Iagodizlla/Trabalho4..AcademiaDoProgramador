@@ -78,7 +78,7 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -7} | {1, -18} | {2, -37} | {5, -8}",
+                "{0, -7} | {1, -18} | {2, -20} | {3, -8}",
                 "Id", "Titulo", "Descricao", "Data de Abertura"
             );
 
@@ -92,7 +92,7 @@ namespace Trabalho4.AP
                     continue;
 
                 Console.WriteLine(
-                    "{0, -7} | {1, -18} | {2, -37} | {5, -8}",
+                    "{0, -7} | {1, -18} | {2, -20} | {3, -8}",
                     e.Id, e.Titulo, e.Descricao, e.DataAbertura.ToShortDateString()
                 );
             }
