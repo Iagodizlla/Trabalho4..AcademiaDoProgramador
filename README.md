@@ -1,6 +1,6 @@
 # Trabalho Gestão de Equipamentos
 
-![]()
+![](https://i.imgur.com/mGPril8.gif)
 
 ## Introdução
 
