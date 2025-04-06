@@ -12,14 +12,12 @@ namespace Trabalho4.AP
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public DateTime DataAbertura { get; set; }
-        //public Equipamento Equipamento { get; set; }
 
-        public Chamado(string titulo, string descricao, DateTime dataAbertura/*, Equipamento equipamento*/)
+        public Chamado(string titulo, string descricao, DateTime dataAbertura)
         {
             Titulo = titulo;
             Descricao = descricao;
             DataAbertura = dataAbertura;
-            //Equipamento = equipamento;
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Trabalho4.AP
         public RegistroChamado registro = new RegistroChamado();
         public void ChamadosIniciais()
         {
-            registro.CadastrarChamado(new Chamado("Uva", "Comer uvas", new DateTime(2022, 02, 22)/*, new Equipamento("Notebook", "Dell", 4100, new DateTime(2022, 02, 22))*/));
-            registro.CadastrarChamado(new Chamado("Uva2", "Comer uvas2", new DateTime(2022, 04, 12)/*, new Equipamento("Impressora", "HP", 900, new DateTime(2012, 02, 22))*/));
-            registro.CadastrarChamado(new Chamado("Uva3", "Comer uvas3", new DateTime(2023, 01, 01)/*, new Equipamento("Notebook", "Dell", 8100, new DateTime(2025, 01, 02))*/));
+            registro.CadastrarChamado(new Chamado("Uva", "Comer uvas", new DateTime(2022, 02, 22)));
+            registro.CadastrarChamado(new Chamado("Uva2", "Comer uvas2", new DateTime(2022, 04, 12)));
+            registro.CadastrarChamado(new Chamado("Uva3", "Comer uvas3", new DateTime(2023, 01, 01)));
         }
         public char ApresentarMenuChamado()
         {
@@ -61,28 +61,19 @@ namespace Trabalho4.AP
             Console.Write("Digite a descricao do chamado: ");
             string descricao = Console.ReadLine()!;
 
-            //Console.Write("Digite o ID do equipamento do chamado: ");
-            //int idEquipamento = Convert.ToInt32(Console.ReadLine());
-
-            //if (!repositorio.ExisteEquipamento(idEquipamento))
-            //{
-            //    Notificador.ExibirMensagem("O equipamento mencionado não existe!", ConsoleColor.DarkYellow);
-            //    return;
-            //}
-
             Console.Write("Digite a data de abertura do chamado (formato: dd/MM/aaaa): ");
             DateTime dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
-            Chamado novoChamado = new Chamado(titulo, descricao, dataFabricacao/*, repositorio.equipamentos[idEquipamento]*/);
+            Chamado novoChamado = new Chamado(titulo, descricao, dataFabricacao);
             bool conseguiuEditar = registro.EditarChamado(idChamadoEscolhido, novoChamado);
 
             if (!conseguiuEditar)
             {
-                Notificador.ExibirMensagem("Houve um erro durante a edição de equipamento...", ConsoleColor.Red);
+                Notificador.ExibirMensagem("Houve um erro durante a edição do chamado...", ConsoleColor.Red);
                 return;
             }
 
-            Notificador.ExibirMensagem("O equipamento foi editado com sucesso!", ConsoleColor.Green);
+            Notificador.ExibirMensagem("O chamado foi editado com sucesso!", ConsoleColor.Green);
         }
         public void CadastrarChamado()
         {
@@ -98,23 +89,43 @@ namespace Trabalho4.AP
             Console.Write("Digite a descricao do chamado: ");
             string descricao = Console.ReadLine()!;
 
-            //Console.Write("Digite o ID do equipamento do chamado: ");
-            //int idEquipamento = Convert.ToInt32(Console.ReadLine());
-
-            //if (!repositorio.ExisteEquipamento(idEquipamento))
-            //{
-            //    Notificador.ExibirMensagem("O equipamento mencionado não existe!", ConsoleColor.DarkYellow);
-            //    return;
-            //}
-
             Console.Write("Digite a data de abertura do chamado (formato: dd/MM/aaaa): ");
             DateTime dataFabricacao = Convert.ToDateTime(Console.ReadLine());
 
-            Chamado chamado = new Chamado(titulo, descricao, dataFabricacao/*, repositorio.equipamentos[idEquipamento]*/);
+            Chamado chamado = new Chamado(titulo, descricao, dataFabricacao);
 
             registro.CadastrarChamado(chamado);
 
-            Notificador.ExibirMensagem("O equipamento foi cadastrado com sucesso!", ConsoleColor.Green);
+            Notificador.ExibirMensagem("O chamado foi cadastrado com sucesso!", ConsoleColor.Green);
+        }
+        public void ExcluirChamado()
+        {
+            Menu.ExibirCabecalhoEquipamento();
+
+            Console.WriteLine("Excluindo Chamado...");
+
+            Console.WriteLine();
+
+            VisualizarChamados(false);
+
+            Console.Write("Digite o ID do chamado que deseja excluir: ");
+            int idEquipamentoEscolhido = Convert.ToInt32(Console.ReadLine());
+
+            if (!registro.ExisteChamado(idEquipamentoEscolhido))
+            {
+                Notificador.ExibirMensagem("O chamado mencionado não existe!", ConsoleColor.DarkYellow);
+                return;
+            }
+
+            bool conseguiuExcluir = registro.ExcluirChamado(idEquipamentoEscolhido);
+
+            if (!conseguiuExcluir)
+            {
+                Notificador.ExibirMensagem("Houve um erro durante a exclusão do chamado...", ConsoleColor.Red);
+                return;
+            }
+
+            Notificador.ExibirMensagem("O chamado foi excluído com sucesso!", ConsoleColor.Green);
         }
         public void VisualizarChamados(bool exibirTitulo)
         {
@@ -128,8 +139,8 @@ namespace Trabalho4.AP
             Console.WriteLine();
 
             Console.WriteLine(
-                "{0, -7} | {1, -20} | {2, -25} | {3, -20}",// "| {4, -7}",
-                "Id", "Titulo", "Descricao", "Data de Abertura"//, "Id Equipamento"
+                "{0, -7} | {1, -20} | {2, -25} | {3, -20}",
+                "Id", "Titulo", "Descricao", "Data de Abertura"
             );
 
             Chamado[] chamadoCadastrados = registro.SelecionarChamado();
@@ -142,8 +153,8 @@ namespace Trabalho4.AP
                     continue;
 
                 Console.WriteLine(
-                    "{0, -7} | {1, -20} | {2, -25} | {3, -20}",//" | {4, -7}",
-                    e.Id, e.Titulo, e.Descricao, e.DataAbertura.ToShortDateString()//, e.Equipamento.Id
+                    "{0, -7} | {1, -20} | {2, -25} | {3, -20}",
+                    e.Id, e.Titulo, e.Descricao, e.DataAbertura.ToShortDateString()
                 );
             }
 

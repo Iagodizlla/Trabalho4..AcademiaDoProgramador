@@ -35,7 +35,6 @@ namespace Trabalho4.AP
                     chamados[i].Titulo = chamadoEditado.Titulo;
                     chamados[i].Descricao = chamadoEditado.Descricao;
                     chamados[i].DataAbertura = chamadoEditado.DataAbertura;
-                    //chamados[i].Equipamento.Id = chamadoEditado.Equipamento.Id;
 
                     return true;
                 }
@@ -65,6 +64,22 @@ namespace Trabalho4.AP
         public Chamado[] SelecionarChamado()
         {
             return chamados;
+        }
+        public bool ExcluirChamado(int id)
+        {
+            for (int i = 0; i < chamados.Length; i++)
+            {
+                if (chamados[i] == null)
+                    continue;
+
+                else if (chamados[i].Id == id)
+                {
+                    chamados[i] = null!;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
