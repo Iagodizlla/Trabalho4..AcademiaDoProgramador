@@ -27,6 +27,7 @@ public class TelaChamado
 
         Console.WriteLine();
         Console.WriteLine("O chamado foi cadastrado com sucesso!");
+        Console.ReadLine();
     }
 
     public void EditarChamado()
@@ -53,6 +54,7 @@ public class TelaChamado
 
         Console.WriteLine();
         Console.WriteLine("O chamado foi editado com sucesso!");
+        Console.ReadLine();
     }
 
     public void ExcluirChamado()
@@ -77,6 +79,7 @@ public class TelaChamado
 
         Console.WriteLine();
         Console.WriteLine("O chamado foi excluído com sucesso!");
+        Console.ReadLine();
     }
 
     public void VisualizarChamados(bool exibirTitulo)

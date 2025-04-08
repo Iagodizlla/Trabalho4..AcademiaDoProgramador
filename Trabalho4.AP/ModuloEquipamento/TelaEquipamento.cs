@@ -80,6 +80,7 @@ public class TelaEquipamento
 
         Console.WriteLine();
         Console.WriteLine("O equipamento foi editado com sucesso!");
+        Console.ReadLine();
     }
 
     public void ExcluirEquipamento()
@@ -107,6 +108,7 @@ public class TelaEquipamento
 
         Console.WriteLine();
         Console.WriteLine("O equipamento foi excluído com sucesso!");
+        Console.ReadLine();
     }
 
     public void VisualizarEquipamentos(bool exibirTitulo)
@@ -142,6 +144,6 @@ public class TelaEquipamento
                 e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
             );
         }
-        Console.WriteLine();
+        Console.ReadLine();
     }
 }

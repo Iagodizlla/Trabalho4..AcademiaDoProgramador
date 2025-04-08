@@ -49,7 +49,7 @@ class Program
                 {
                     case '1': telaFabricante.CadastrarFabricante(); break;
                     case '2': telaFabricante.EditarFabricante(); break;
-                    //case '3': telaFabricante.ExcluirFabricante(); break;
+                    case '3': telaFabricante.ExcluirFabricante(); break;
                     case '4': telaFabricante.VisualizarFabricantes(true); break;
                     default: break;
                 }

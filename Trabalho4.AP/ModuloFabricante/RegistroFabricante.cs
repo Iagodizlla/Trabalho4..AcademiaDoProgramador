@@ -40,5 +40,21 @@ namespace Trabalho4.AP.ModuloFabricante
 
             return false;
         }
+        public bool ExcluirFabricante(int idEquipamento)
+        {
+            for (int i = 0; i < fabricantes.Length; i++)
+            {
+                if (fabricantes[i] == null) continue;
+
+                else if (fabricantes[i].Id == idEquipamento)
+                {
+                    fabricantes[i] = null!;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

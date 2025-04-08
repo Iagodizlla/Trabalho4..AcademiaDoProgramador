@@ -106,6 +106,33 @@ namespace Trabalho4.AP.ModuloFabricante
 
             Console.WriteLine();
             Console.WriteLine("O fabricante foi editado com sucesso!");
+            Console.ReadLine();
+        }
+        public void ExcluirFabricante()
+        {
+            Console.Clear();
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("Gestão de Fabricantes");
+            Console.WriteLine("--------------------------------------------");
+
+            Console.WriteLine("Excluindo Fabricante...");
+            Console.WriteLine("--------------------------------------------");
+            VisualizarFabricantes(false);
+
+            Console.Write("Digite o ID do registro que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            bool conseguiuExcluir = registroFabricante.ExcluirFabricante(idSelecionado);
+
+            if (!conseguiuExcluir)
+            {
+                Console.WriteLine("Houve um erro durante a exclusão de um registro...");
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("O fabricante foi excluído com sucesso!");
+            Console.ReadLine();
         }
     }
 }
