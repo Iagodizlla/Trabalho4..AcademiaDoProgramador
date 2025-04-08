@@ -9,8 +9,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        TelaEquipamento telaEquipamento = new TelaEquipamento();
         TelaFabricante telaFabricante = new TelaFabricante();
+        RegistroFabricante registroFabricante = telaFabricante.registroFabricante;
+        TelaEquipamento telaEquipamento = new TelaEquipamento(registroFabricante);
         RepositorioEquipamento repositorioEquipamento = telaEquipamento.repositorioEquipamento;
         TelaChamado telaChamado = new TelaChamado(repositorioEquipamento);
         Menu telaPrincipal = new Menu();

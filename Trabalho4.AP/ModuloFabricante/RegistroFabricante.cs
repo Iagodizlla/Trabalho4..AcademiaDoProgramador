@@ -56,5 +56,20 @@ namespace Trabalho4.AP.ModuloFabricante
 
             return false;
         }
+        public Fabricante SelecionarFabricantePorId(int idFabricante)
+        {
+            for (int i = 0; i < fabricantes.Length; i++)
+            {
+                Fabricante e = fabricantes[i];
+
+                if (e == null)
+                    continue;
+
+                else if (e.Id == idFabricante)
+                    return e;
+            }
+
+            return null!;
+        }
     }
 }
