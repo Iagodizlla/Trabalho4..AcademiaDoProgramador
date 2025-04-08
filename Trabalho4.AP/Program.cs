@@ -1,81 +1,54 @@
-﻿namespace Trabalho4.AP
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+
+namespace GestaoDeEquipamentos.ConsoleApp;
+
+class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        TelaEquipamento telaEquipamento = new TelaEquipamento();
+        RepositorioEquipamento repositorioEquipamento = telaEquipamento.repositorioEquipamento;
+        TelaChamado telaChamado = new TelaChamado(repositorioEquipamento);
+        Menu telaPrincipal = new Menu();
+
+        while (true)
         {
-            TelaEquipamento telaEquipamento = new TelaEquipamento();
-            TelaChamado telaChamado = new TelaChamado();
-            bool opcaoSairEscolhida = false;
-
-            telaEquipamento.EquipamentosIniciais();
-            telaChamado.ChamadosIniciais();
-
-            while (!opcaoSairEscolhida)
+            char opcaoPrincipal = telaPrincipal.ApresentarMenuPrincipal();
+            if (opcaoPrincipal == '1')
             {
-                #region Menu Principal(Sair / Gerência de Equipamentos)
-                char opcaoPrincipalEscolhida = Menu.ApresentarMenuPrincipal();
-                char operacaoEscolhida;
-                #endregion
-                #region Selecionar opcaoes
-                switch (opcaoPrincipalEscolhida)
+                char opcaoEscolhida = telaPrincipal.ApresentarMenuEquipamento();
+                switch (opcaoEscolhida)
                 {
-                    case '1':
-                        #region menu secundário(Cadastrar Equipamento / Editar Equipamento / Excluir Equipamento / Visualizar Equipamentos)
-                        operacaoEscolhida = telaEquipamento.ApresentarMenuEquipamento();
-                        #endregion
-                        #region Selecionar opcaoes
-                        if (operacaoEscolhida == 'S')
-                            break;
-
-                        if (operacaoEscolhida == '1')
-                            telaEquipamento.CadastrarEquipamento();
-
-                        else if (operacaoEscolhida == '2')
-                            telaEquipamento.EditarEquipamento();
-
-                        else if (operacaoEscolhida == '3')
-                            telaEquipamento.ExcluirEquipamento();
-
-                        else if (operacaoEscolhida == '4')
-                            telaEquipamento.VisualizarEquipamentos(true);
-                        #endregion
-                        break;
-                    case '2':
-                        #region menu secundário(Cadastrar Chamado / Editar Chamado / Excluir Chamado / Visualizar Chamados)
-                        operacaoEscolhida = telaChamado.ApresentarMenuChamado();
-                        #endregion
-                        #region Selecionar opcaoes
-                        if (operacaoEscolhida == 'S')
-                            break;
-
-                        if (operacaoEscolhida == '1')
-                            telaChamado.CadastrarChamado();
-
-                        else if (operacaoEscolhida == '2')
-                            telaChamado.EditarChamado();
-
-                        else if (operacaoEscolhida == '3')
-                            telaChamado.ExcluirChamado();
-
-                        else if (operacaoEscolhida == '4')
-                            telaChamado.VisualizarChamados(true);
-                        #endregion
-                        break;
-                    case 'S':
-                        #region Sair
-                        opcaoSairEscolhida = true;
-                        break;
-                        #endregion
-                    default:
-                        #region Opção inválida
-                        Console.WriteLine("Opção inválida, tente novamente.");
-                        Console.ReadLine();
-                        break;
-                        #endregion
+                    case '1': telaEquipamento.CadastrarEquipamento(); break;
+                    case '2': telaEquipamento.EditarEquipamento(); break;
+                    case '3': telaEquipamento.ExcluirEquipamento(); break;
+                    case '4': telaEquipamento.VisualizarEquipamentos(true); break;
+                    default: break;
                 }
-                #endregion
             }
+            else if (opcaoPrincipal == '2')
+            {
+                char opcaoEscolhida = telaPrincipal.ApresentarMenuChamado();
+                switch (opcaoEscolhida)
+                {
+                    case '1': telaChamado.CadastrarChamado(); break;
+                    case '2': telaChamado.EditarChamado(); break;
+                    case '3': telaChamado.ExcluirChamado(); break;
+                    case '4': telaChamado.VisualizarChamados(true); break;
+                    default: break;
+                }
+            }
+            else if(opcaoPrincipal == 'S')
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida, tente novamente.");
+            }
+            Console.ReadLine();
         }
     }
 }
