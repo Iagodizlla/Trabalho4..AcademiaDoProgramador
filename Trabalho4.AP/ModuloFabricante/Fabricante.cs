@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Trabalho4.AP.ModuloFabricante
+﻿namespace Trabalho4.AP.ModuloFabricante
 {
-    internal class Fabricante
+    public class Fabricante
     {
+        public int Id;
+        public string Nome;
+        public string Email;
+        public string Telefone;
+
+        public Fabricante(string nome, string email, string telefone)
+        {
+            Nome = nome;
+            Email = email;
+            Telefone = telefone;
+        }
     }
 }

@@ -140,8 +140,6 @@ public class TelaChamado
                 e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
             );
         }
-
-        Console.WriteLine();
     }
 
     public void ExibirCabecalho()
