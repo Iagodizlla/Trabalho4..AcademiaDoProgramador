@@ -142,5 +142,6 @@ public class TelaEquipamento
                 e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
             );
         }
+        Console.WriteLine();
     }
 }

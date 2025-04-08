@@ -14,7 +14,7 @@ public class Menu
 
         Console.WriteLine("1 - Controle de Equipamentos");
         Console.WriteLine("2 - Controle de Chamados");
-        Console.WriteLine("3 = Controle de Fabricantes");
+        Console.WriteLine("3 - Controle de Fabricantes");
         Console.WriteLine("S - Sair");
 
         Console.WriteLine();

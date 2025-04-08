@@ -48,7 +48,7 @@ class Program
                 switch (opcaoEscolhida)
                 {
                     case '1': telaFabricante.CadastrarFabricante(); break;
-                    //case '2': telaFabricante.EditarFabricante(); break;
+                    case '2': telaFabricante.EditarFabricante(); break;
                     //case '3': telaFabricante.ExcluirFabricante(); break;
                     case '4': telaFabricante.VisualizarFabricantes(true); break;
                     default: break;
@@ -61,8 +61,8 @@ class Program
             else
             {
                 Console.WriteLine("Opção inválida, tente novamente.");
+                Console.ReadLine();
             }
-            Console.ReadLine();
         }
     }
 }

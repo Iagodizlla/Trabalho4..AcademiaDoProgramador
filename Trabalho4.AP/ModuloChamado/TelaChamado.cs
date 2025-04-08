@@ -112,7 +112,7 @@ public class TelaChamado
                 c.Id, c.DataAbertura.ToShortDateString(), c.Titulo, c.Descricao, c.Equipamento.Nome, tempoDecorrido
             );
         }
-
+        Console.ReadLine();
     }
 
     public void VisualizarEquipamentos()
@@ -140,6 +140,7 @@ public class TelaChamado
                 e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
             );
         }
+        Console.ReadLine();
     }
 
     public void ExibirCabecalho()

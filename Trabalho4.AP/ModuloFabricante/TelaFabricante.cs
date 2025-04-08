@@ -67,6 +67,45 @@ namespace Trabalho4.AP.ModuloFabricante
                     e.Id, e.Nome, e.Email, e.Telefone
                 );
             }
+            Console.ReadLine();
+        }
+        public void EditarFabricante()
+        {
+            Console.Clear();
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("Gestão de Fabricantes");
+            Console.WriteLine("--------------------------------------------");
+
+            Console.WriteLine("Editando Fabricante...");
+            Console.WriteLine("--------------------------------------------");
+
+            VisualizarFabricantes(false);
+
+            Console.Write("Digite o ID do registro que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+
+            Console.Write("Digite o nome do fabricante: ");
+            string nome = Console.ReadLine()!;
+
+            Console.Write("Digite o email do fabricante: ");
+            string email = Console.ReadLine()!;
+
+            Console.Write("Digite o telefone do fabricante: ");
+            string telefone = Console.ReadLine()!;
+
+            Fabricante novoFabricante = new Fabricante(nome, email, telefone);
+
+            bool conseguiuEditar = registroFabricante.EditarFabricante(idSelecionado, novoFabricante);
+            if (!conseguiuEditar)
+            {
+                Console.WriteLine("Houve um erro durante a edição de um registro...");
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("O fabricante foi editado com sucesso!");
         }
     }
 }
