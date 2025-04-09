@@ -1,10 +1,10 @@
 # Trabalho Gestão de Equipamentos
 
-![](https://i.imgur.com/mGPril8.gif)
+![](https://i.imgur.com/ieLqGPw.gif)
 
 ## Introdução
 
-- Um sistema de gestão de equipamentos e chamados.
+- Um sistema de gestão de equipamentos, fabricantes e chamados.
 
 ---
 ## Tecnologias
@@ -13,7 +13,10 @@
 
 ---
 ## Funcionalidades
-
+- **Cadastrar Fabricante**: Permite o usuario cadastrar um fabricante novo.
+- **Editar Fabricante**: Permite o usuario editar um fabricante ja cadastrado.
+- **Excluir Fabricante**: Permite o usuario excluir um fabricante ja cadastrado.
+- **Visualizar Fabricante**: Permite o usuario visualizar todos os fabricantes cadastrados.
 - **Cadastrar Equipamento**: Permite o usuario cadastrar um equipamento novo.
 - **Editar Equipamento**: Permite o usuario editar um equipamento ja cadastrado.
 - **Excluir Equipamento**: Permite o usuario excluir um equipamento ja cadastrado.
