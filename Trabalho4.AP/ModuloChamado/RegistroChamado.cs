@@ -1,6 +1,7 @@
-﻿using Trabalho4.AP.Compartilhado;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
-namespace Trabalho4.AP.ModuloChamado;
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
 public class RepositorioChamado
 {

@@ -1,22 +1,53 @@
-﻿using Trabalho4.AP.Compartilhado;
-using Trabalho4.AP.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
-namespace Trabalho4.AP.ModuloChamado;
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
 public class TelaChamado
 {
-    public RepositorioEquipamento repositorioEquipamento;
     public RepositorioChamado repositorioChamado;
+    public RepositorioEquipamento repositorioEquipamento;
 
-    public TelaChamado(RepositorioEquipamento repositorioEquipamento)
+    public TelaChamado(RepositorioChamado repositorioChamado, RepositorioEquipamento repositorioEquipamento)
     {
+        this.repositorioChamado = repositorioChamado;
         this.repositorioEquipamento = repositorioEquipamento;
-        repositorioChamado = new RepositorioChamado();
+    }
+
+    public void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------------------------------");
+        Console.WriteLine("Controle de Chamados");
+        Console.WriteLine("--------------------------------------------");
+    }
+
+    public char ApresentarMenu()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine();
+
+        Console.WriteLine("1 - Cadastrar Chamado");
+        Console.WriteLine("2 - Editar Chamado");
+        Console.WriteLine("3 - Excluir Chamado");
+        Console.WriteLine("4 - Visualizar Chamados");
+
+        Console.WriteLine("S - Voltar");
+
+        Console.WriteLine();
+
+        Console.Write("Escolha uma das opções: ");
+        char operacaoEscolhida = Console.ReadLine()!.ToUpper()[0];
+
+        return operacaoEscolhida;
     }
 
     public void CadastrarChamado()
     {
         ExibirCabecalho();
+
+        Console.WriteLine();
 
         Console.WriteLine("Cadastrando Chamado...");
         Console.WriteLine("--------------------------------------------");
@@ -25,12 +56,14 @@ public class TelaChamado
 
         repositorioChamado.CadastrarChamado(novoChamado);
 
-        Notificador.ExibirMensagem("O chamado foi cadastrado com sucesso!", ConsoleColor.Green);
+        Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
     }
 
     public void EditarChamado()
     {
         ExibirCabecalho();
+
+        Console.WriteLine();
 
         Console.WriteLine("Editando Chamado...");
         Console.WriteLine("--------------------------------------------");
@@ -46,16 +79,19 @@ public class TelaChamado
 
         if (!conseguiuEditar)
         {
-            Console.WriteLine("Houve um erro durante a edição de um registro...");
+            Notificador.ExibirMensagem("Houve um erro durante a edição de um registro...", ConsoleColor.Red);
+
             return;
         }
 
-        Notificador.ExibirMensagem("O chamado foi editado com sucesso!", ConsoleColor.Green);
+        Notificador.ExibirMensagem("O registro foi editado com sucesso!", ConsoleColor.Green);
     }
 
     public void ExcluirChamado()
     {
         ExibirCabecalho();
+
+        Console.WriteLine();
 
         Console.WriteLine("Excluindo Chamado...");
         Console.WriteLine("--------------------------------------------");
@@ -69,27 +105,28 @@ public class TelaChamado
 
         if (!conseguiuExcluir)
         {
-            Console.WriteLine("Houve um erro durante a exclusão de um registro...");
+            Notificador.ExibirMensagem("Houve um erro durante a exclusão de um registro...", ConsoleColor.Red);
+
             return;
         }
 
-        Notificador.ExibirMensagem("O chamado foi excluído com sucesso!", ConsoleColor.Green);
+        Notificador.ExibirMensagem("O registro foi excluído com sucesso!", ConsoleColor.Green);
     }
 
     public void VisualizarChamados(bool exibirTitulo)
     {
         if (exibirTitulo)
-        {
             ExibirCabecalho();
 
-            Console.WriteLine("Visualizando Chamados...");
-            Console.WriteLine("--------------------------------------------");
-        }
+        Console.WriteLine();
+
+        Console.WriteLine("Visualizando Chamados...");
+        Console.WriteLine("--------------------------------------------");
 
         Console.WriteLine();
 
         Console.WriteLine(
-            "{0, -6} | {1, -16} | {2, -15} | {3, -30} | {4, -15} | {5, -15}",
+            "{0, -6} | {1, -12} | {2, -15} | {3, -30} | {4, -15} | {5, -15}",
             "Id", "Data de Abertura", "Título", "Descrição", "Equipamento", "Tempo Decorrido"
         );
 
@@ -105,49 +142,14 @@ public class TelaChamado
             string tempoDecorrido = $"{c.ObterTempoDecorrido()} dia(s)";
 
             Console.WriteLine(
-                "{0, -6} | {1, -16} | {2, -15} | {3, -30} | {4, -15} | {5, -15}",
+                "{0, -6} | {1, -12} | {2, -15} | {3, -30} | {4, -15} | {5, -15}",
                 c.Id, c.DataAbertura.ToShortDateString(), c.Titulo, c.Descricao, c.Equipamento.Nome, tempoDecorrido
             );
         }
-        Console.ReadLine();
-    }
-
-    public void VisualizarEquipamentos()
-    {
-        Console.WriteLine("Visualizando Equipamentos...");
-        Console.WriteLine("--------------------------------------------");
 
         Console.WriteLine();
 
-        Console.WriteLine(
-            "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -15} | {5, -10}",
-            "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
-        );
-
-        Equipamento[] equipamentosCadastrados = repositorioEquipamento.SelecionarEquipamentos();
-
-        for (int i = 0; i < equipamentosCadastrados.Length; i++)
-        {
-            Equipamento e = equipamentosCadastrados[i];
-
-            if (e == null) continue;
-
-            Console.WriteLine(
-                "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -15} | {5, -10}",
-                e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante.Nome, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
-            );
-        }
-        Console.ReadLine();
-    }
-
-    public void ExibirCabecalho()
-    {
-        Console.Clear();
-        Console.WriteLine("--------------------------------------------");
-        Console.WriteLine("Controle de Chamados");
-        Console.WriteLine("--------------------------------------------");
-
-        Console.WriteLine();
+        Notificador.ExibirMensagem("Pressione ENTER para continuar...", ConsoleColor.DarkYellow);
     }
 
     public Chamado ObterDadosChamado()
@@ -168,5 +170,38 @@ public class TelaChamado
         Chamado novoChamado = new Chamado(titulo, descricao, equipamentoSelecionado);
 
         return novoChamado;
+    }
+
+    public void VisualizarEquipamentos()
+    {
+        Console.WriteLine();
+
+        Console.WriteLine("Visualizando Equipamentos...");
+        Console.WriteLine("--------------------------------------------");
+
+        Console.WriteLine();
+
+        Console.WriteLine(
+            "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -15} | {5, -10}",
+            "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
+        );
+
+        Equipamento[] equipamentosCadastrados = repositorioEquipamento.SelecionarEquipamentos();
+
+        for (int i = 0; i < equipamentosCadastrados.Length; i++)
+        {
+            Equipamento e = equipamentosCadastrados[i];
+
+            if (e == null) continue;
+
+            Console.WriteLine(
+                "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -15} | {5, -10}",
+                e.Id, e.Nome, e.ObterNumeroSerie(), e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
+            );
+        }
+
+        Console.WriteLine();
+
+        Notificador.ExibirMensagem("Pressione ENTER para continuar...", ConsoleColor.DarkYellow);
     }
 }
