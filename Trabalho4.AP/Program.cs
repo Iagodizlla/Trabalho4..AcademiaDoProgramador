@@ -1,9 +1,9 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+﻿using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.ModuloEquipamento;
+using Trabalho4.AP.ModuloChamado;
 using Trabalho4.AP.ModuloFabricante;
 
-namespace GestaoDeEquipamentos.ConsoleApp;
+namespace Trabalho4.AP;
 
 class Program
 {

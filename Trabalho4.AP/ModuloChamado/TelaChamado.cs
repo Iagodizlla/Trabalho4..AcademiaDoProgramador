@@ -1,7 +1,7 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+﻿using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.ModuloEquipamento;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+namespace Trabalho4.AP.ModuloChamado;
 
 public class TelaChamado
 {
@@ -25,9 +25,7 @@ public class TelaChamado
 
         repositorioChamado.CadastrarChamado(novoChamado);
 
-        Console.WriteLine();
-        Console.WriteLine("O chamado foi cadastrado com sucesso!");
-        Console.ReadLine();
+        Notificador.ExibirMensagem("O chamado foi cadastrado com sucesso!", ConsoleColor.Green);
     }
 
     public void EditarChamado()
@@ -52,9 +50,7 @@ public class TelaChamado
             return;
         }
 
-        Console.WriteLine();
-        Console.WriteLine("O chamado foi editado com sucesso!");
-        Console.ReadLine();
+        Notificador.ExibirMensagem("O chamado foi editado com sucesso!", ConsoleColor.Green);
     }
 
     public void ExcluirChamado()
@@ -77,9 +73,7 @@ public class TelaChamado
             return;
         }
 
-        Console.WriteLine();
-        Console.WriteLine("O chamado foi excluído com sucesso!");
-        Console.ReadLine();
+        Notificador.ExibirMensagem("O chamado foi excluído com sucesso!", ConsoleColor.Green);
     }
 
     public void VisualizarChamados(bool exibirTitulo)

@@ -1,4 +1,4 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿namespace Trabalho4.AP.Compartilhado;
 
 public class Menu
 {

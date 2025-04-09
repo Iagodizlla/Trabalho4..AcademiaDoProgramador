@@ -1,5 +1,5 @@
 ﻿using Trabalho4.AP.ModuloFabricante;
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+namespace Trabalho4.AP.ModuloEquipamento;
 
 public class Equipamento
 {

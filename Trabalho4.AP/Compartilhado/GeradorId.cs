@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿namespace Trabalho4.AP.Compartilhado;
 
 public static class GeradorIds
 {

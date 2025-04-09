@@ -1,8 +1,9 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.ModuloChamado;
+using Trabalho4.AP.ModuloEquipamento;
 using Trabalho4.AP.ModuloFabricante;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+namespace Trabalho4.AP.ModuloEquipamento;
 
 public class TelaEquipamento
 {
@@ -122,9 +123,7 @@ public class TelaEquipamento
             return;
         }
 
-        Console.WriteLine();
-        Console.WriteLine("O equipamento foi editado com sucesso!");
-        Console.ReadLine();
+        Notificador.ExibirMensagem("O equipamento foi editado com sucesso!", ConsoleColor.Green);
     }
 
     public void ExcluirEquipamento()
@@ -150,9 +149,7 @@ public class TelaEquipamento
             return;
         }
 
-        Console.WriteLine();
-        Console.WriteLine("O equipamento foi excluído com sucesso!");
-        Console.ReadLine();
+        Notificador.ExibirMensagem("O equipamento foi excluído com sucesso!", ConsoleColor.Green);
     }
 
     public void VisualizarEquipamentos(bool exibirTitulo)

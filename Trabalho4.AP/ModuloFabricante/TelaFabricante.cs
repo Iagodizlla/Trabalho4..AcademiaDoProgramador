@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.ModuloEquipamento;
 
 namespace Trabalho4.AP.ModuloFabricante
 {
@@ -104,9 +105,7 @@ namespace Trabalho4.AP.ModuloFabricante
                 return;
             }
 
-            Console.WriteLine();
-            Console.WriteLine("O fabricante foi editado com sucesso!");
-            Console.ReadLine();
+            Notificador.ExibirMensagem("O fabricante foi editado com sucesso!", ConsoleColor.Green);
         }
         public void ExcluirFabricante()
         {
@@ -130,9 +129,7 @@ namespace Trabalho4.AP.ModuloFabricante
                 return;
             }
 
-            Console.WriteLine();
-            Console.WriteLine("O fabricante foi excluído com sucesso!");
-            Console.ReadLine();
+            Notificador.ExibirMensagem("O fabricante foi excluído com sucesso!", ConsoleColor.Green);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.ModuloEquipamento;
 using System;
 using System.Collections.Generic;
 using System.Linq;
