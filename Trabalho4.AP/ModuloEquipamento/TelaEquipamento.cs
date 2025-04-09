@@ -55,6 +55,16 @@ public class TelaEquipamento
         Console.WriteLine();
 
         Equipamento novoEquipamento = ObterDadosEquipamento();
+        string erros = novoEquipamento.Validar();
+
+        if (erros.Length > 0)
+        {
+            Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+
+            CadastrarEquipamento();
+
+            return;
+        }
 
         Fabricante fabricante = novoEquipamento.Fabricante;
 
@@ -85,7 +95,16 @@ public class TelaEquipamento
         Console.WriteLine();
 
         Equipamento equipamentoEditado = ObterDadosEquipamento();
+        string erros = equipamentoEditado.Validar();
 
+        if (erros.Length > 0)
+        {
+            Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+
+            EditarEquipamento();
+
+            return;
+        }
         Fabricante fabricanteEditado = equipamentoEditado.Fabricante;
 
         bool conseguiuEditar = repositorioEquipamento.EditarEquipamento(idSelecionado, equipamentoEditado);
