@@ -87,6 +87,16 @@ public class TelaFabricante
 
         Fabricante fabricanteEditado = ObterDadosFabricante();
 
+        string erros = fabricanteEditado.Validar();
+
+        if (erros.Length > 0)
+        {
+            Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+
+            EditarFabricante();
+
+            return;
+        }
         bool conseguiuEditar = repositorioFabricante.EditarFabricante(idFabricante, fabricanteEditado);
 
         if (!conseguiuEditar)

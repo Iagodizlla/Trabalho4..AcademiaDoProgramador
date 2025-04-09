@@ -23,22 +23,19 @@ public class Fabricante
     {
         string erros = "";
 
-        if (string.IsNullOrWhiteSpace(Nome))
-            erros += "O campo 'Nome' é obrigatório.\n";
-
         if (Nome.Length < 3)
             erros += "O campo 'Nome' precisa conter ao menos 3 caracteres.\n";
 
         if (string.IsNullOrWhiteSpace(Email))
             erros += "O campo 'Email' é obrigatório.\n";
 
-        if (!MailAddress.TryCreate(Email, out _))
+        else if (!MailAddress.TryCreate(Email, out _))
             erros += "O campo 'Email' deve estar em um formato válido.\n";
 
         if (string.IsNullOrWhiteSpace(Telefone))
             erros += "O campo 'Telefone' é obrigatório.\n";
 
-        if (Telefone.Length < 12)
+        else if (Telefone.Length < 12)
             erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.";
 
         return erros;
