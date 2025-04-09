@@ -54,6 +54,16 @@ public class TelaChamado
 
         Chamado novoChamado = ObterDadosChamado();
 
+        string erros = novoChamado.Validar();
+
+        if (erros.Length > 0)
+        {
+            Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+
+            CadastrarChamado();
+
+            return;
+        }
         repositorioChamado.CadastrarChamado(novoChamado);
 
         Notificador.ExibirMensagem("O registro foi concluído com sucesso!", ConsoleColor.Green);
@@ -75,6 +85,16 @@ public class TelaChamado
 
         Chamado novoChamado = ObterDadosChamado();
 
+        string erros = novoChamado.Validar();
+
+        if (erros.Length > 0)
+        {
+            Notificador.ExibirMensagem(erros, ConsoleColor.Red);
+
+            EditarChamado();
+
+            return;
+        }
         bool conseguiuEditar = repositorioChamado.EditarChamado(idChamado, novoChamado);
 
         if (!conseguiuEditar)

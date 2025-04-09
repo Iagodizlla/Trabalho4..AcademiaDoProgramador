@@ -55,6 +55,7 @@ public class TelaEquipamento
         Console.WriteLine();
 
         Equipamento novoEquipamento = ObterDadosEquipamento();
+
         string erros = novoEquipamento.Validar();
 
         if (erros.Length > 0)
@@ -95,6 +96,7 @@ public class TelaEquipamento
         Console.WriteLine();
 
         Equipamento equipamentoEditado = ObterDadosEquipamento();
+
         string erros = equipamentoEditado.Validar();
 
         if (erros.Length > 0)
