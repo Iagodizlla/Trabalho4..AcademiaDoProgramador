@@ -1,5 +1,6 @@
-﻿using Trabalho4.AP.ModuloFabricante;
-namespace Trabalho4.AP.ModuloEquipamento;
+﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class Equipamento
 {
@@ -9,12 +10,12 @@ public class Equipamento
     public decimal PrecoAquisicao;
     public DateTime DataFabricacao;
 
-    public Equipamento(string nome, Fabricante fabricante, decimal precoAquisicao, DateTime dataFabricacao)
+    public Equipamento(string nome, decimal precoAquisicao, DateTime dataFabricacao, Fabricante fabricante)
     {
         Nome = nome;
-        Fabricante = fabricante;
         PrecoAquisicao = precoAquisicao;
         DataFabricacao = dataFabricacao;
+        Fabricante = fabricante;
     }
 
     public string ObterNumeroSerie()

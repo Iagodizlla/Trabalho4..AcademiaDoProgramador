@@ -1,18 +1,17 @@
-﻿namespace Trabalho4.AP.Compartilhado
+﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+
+public static class Notificador
 {
-    public class Notificador
+    public static void ExibirMensagem(string mensagem, ConsoleColor cor)
     {
-        public static void ExibirMensagem(string mensagem, ConsoleColor cor)
-        {
-            Console.ForegroundColor = cor;
+        Console.ForegroundColor = cor;
 
-            Console.WriteLine();
+        Console.WriteLine();
 
-            Console.WriteLine(mensagem);
+        Console.WriteLine(mensagem);
 
-            Console.ResetColor();
+        Console.ResetColor();
 
-            Console.ReadLine();
-        }
+        Console.ReadLine();
     }
 }

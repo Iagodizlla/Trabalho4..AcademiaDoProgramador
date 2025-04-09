@@ -1,5 +1,6 @@
-﻿using Trabalho4.AP.ModuloEquipamento;
-namespace Trabalho4.AP.ModuloChamado;
+﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
 public class Chamado
 {

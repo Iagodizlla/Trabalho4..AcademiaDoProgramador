@@ -1,75 +1,74 @@
-﻿using Trabalho4.AP.Compartilhado;
-using Trabalho4.AP.ModuloEquipamento;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
-namespace Trabalho4.AP.ModuloFabricante
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+
+public class RepositorioFabricante
 {
-    public class RegistroFabricante
+    public Fabricante[] fabricantes = new Fabricante[100];
+    public int contadorFabricantes = 0;
+
+    public void CadastrarFabricante(Fabricante novoFabricante)
     {
-        public Fabricante[] fabricantes = new Fabricante[100];
-        public int contadorFabricantes = 0;
-        public void CadastrarFabricante(Fabricante novoFabricante)
-        {
-            novoFabricante.Id = GeradorIds.GerarIdFabricante();
+        novoFabricante.Id = GeradorIds.GerarIdFabricante();
 
-            fabricantes[contadorFabricantes++] = novoFabricante;
-        }
-        public Fabricante[] SelecionarFabricantes()
+        fabricantes[contadorFabricantes++] = novoFabricante;
+    }
+
+    public bool EditarFabricante(int idFabricante, Fabricante fabricanteEditado)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
         {
-            return fabricantes;
-        }
-        public bool EditarFabricante(int idFabricante, Fabricante fabricanteEditado)
-        {
-            for (int i = 0; i < fabricantes.Length; i++)
+            if (fabricantes[i] == null)
+                continue;
+
+            else if (fabricantes[i].Id == idFabricante)
             {
-                if (fabricantes[i] == null) continue;
+                fabricantes[i].Nome = fabricanteEditado.Nome;
+                fabricantes[i].Email = fabricanteEditado.Email;
+                fabricantes[i].Telefone = fabricanteEditado.Telefone;
 
-                else if (fabricantes[i].Id == idFabricante)
-                {
-                    fabricantes[i].Nome = fabricanteEditado.Nome;
-                    fabricantes[i].Email = fabricanteEditado.Email;
-                    fabricantes[i].Telefone = fabricanteEditado.Telefone;
-
-                    return true;
-                }
+                return true;
             }
-
-            return false;
         }
-        public bool ExcluirFabricante(int idEquipamento)
+
+        return false;
+    }
+
+    public bool ExcluirFabricante(int idFabricante)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
         {
-            for (int i = 0; i < fabricantes.Length; i++)
+            if (fabricantes[i] == null)
+                continue;
+
+            else if (fabricantes[i].Id == idFabricante)
             {
-                if (fabricantes[i] == null) continue;
-
-                else if (fabricantes[i].Id == idEquipamento)
-                {
-                    fabricantes[i] = null!;
-
-                    return true;
-                }
+                fabricantes[i] = null!;
+                return true;
             }
-
-            return false;
         }
-        public Fabricante SelecionarFabricantePorId(int idFabricante)
+
+        return false;
+    }
+
+    public Fabricante[] SelecionarFabricantes()
+    {
+        return fabricantes;
+    }
+
+    public Fabricante SelecionarFabricantePorId(int idFabricante)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
         {
-            for (int i = 0; i < fabricantes.Length; i++)
-            {
-                Fabricante e = fabricantes[i];
+            Fabricante e = fabricantes[i];
 
-                if (e == null)
-                    continue;
+            if (e == null)
+                continue;
 
-                else if (e.Id == idFabricante)
-                    return e;
-            }
-
-            return null!;
+            else if (e.Id == idFabricante)
+                return e;
         }
+
+        return null!;
     }
 }
