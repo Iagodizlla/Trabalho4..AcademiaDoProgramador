@@ -1,4 +1,4 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+﻿namespace Trabalho4.AP.Util;
 
 public static class Notificador
 {

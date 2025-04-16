@@ -1,15 +1,30 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿using Trabalho4.AP.ModuloEquipamento;
 using System.Net.Mail;
+using Trabalho4.AP.Compartilhado;
 
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+namespace Trabalho4.AP.ModuloFabricante;
 
-public class Fabricante
+public class Fabricante : EntidadeBase
 {
-    public int Id;
-    public string Nome;
-    public string Email;
-    public string Telefone;
-    public Equipamento[] Equipamentos;
+    public string Nome { get; set; }
+    public string Email { get; set; }
+    public string Telefone { get; set; }
+    public Equipamento[] Equipamentos { get; private set; }
+    public int QuantidadeEquipamentos
+    {
+        get
+        {
+            int contador = 0;
+
+            for (int i = 0; i < Equipamentos.Length; i++)
+            {
+                if (Equipamentos[i] != null)
+                    contador++;
+            }
+
+            return contador;
+        }
+    }
 
     public Fabricante(string nome, string email, string telefone)
     {
@@ -19,9 +34,12 @@ public class Fabricante
         Equipamentos = new Equipamento[100];
     }
 
-    public string Validar()
+    public override string Validar()
     {
         string erros = "";
+
+        if (string.IsNullOrWhiteSpace(Nome))
+            erros += "O campo 'Nome' é obrigatório.\n";
 
         if (Nome.Length < 3)
             erros += "O campo 'Nome' precisa conter ao menos 3 caracteres.\n";
@@ -29,13 +47,13 @@ public class Fabricante
         if (string.IsNullOrWhiteSpace(Email))
             erros += "O campo 'Email' é obrigatório.\n";
 
-        else if (!MailAddress.TryCreate(Email, out _))
+        if (!MailAddress.TryCreate(Email, out _))
             erros += "O campo 'Email' deve estar em um formato válido.\n";
 
         if (string.IsNullOrWhiteSpace(Telefone))
             erros += "O campo 'Telefone' é obrigatório.\n";
 
-        else if (Telefone.Length < 12)
+        if (Telefone.Length < 12)
             erros += "O campo 'Telefone' deve seguir o formato 00 0000-0000.";
 
         return erros;
@@ -70,16 +88,12 @@ public class Fabricante
         }
     }
 
-    public int ObterQuantidadeEquipamentos()
+    public override void AtualizarRegistro(EntidadeBase registroEditado)
     {
-        int contador = 0;
+        Fabricante fabricanteEditado = (Fabricante)registroEditado;
 
-        for (int i = 0; i < Equipamentos.Length; i++)
-        {
-            if (Equipamentos[i] != null)
-                contador++;
-        }
-
-        return contador;
+        Nome = fabricanteEditado.Nome;
+        Email = fabricanteEditado.Email;
+        Telefone = fabricanteEditado.Telefone;
     }
 }
