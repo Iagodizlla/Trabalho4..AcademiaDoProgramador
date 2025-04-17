@@ -1,8 +1,25 @@
-﻿namespace Trabalho4.AP.Util;
+﻿using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.ModuloChamado;
+using Trabalho4.AP.ModuloEquipamento;
+using Trabalho4.AP.ModuloFabricante;
 
-public class TelaPrincipal
+namespace Trabalho4.AP.Util;
+
+public class Menu
 {
-    public char ApresentarMenuPrincipal()
+    private char opcaoPrincipal;
+    private RepositorioFabricante repositorioFabricante;
+    private RepositorioEquipamento repositorioEquipamento;
+    private RepositorioChamado repositorioChamado;
+
+    public Menu()
+    {
+        this.repositorioFabricante = new RepositorioFabricante();
+        this.repositorioEquipamento = new RepositorioEquipamento();
+        this.repositorioChamado = new RepositorioChamado();
+    }
+
+    public void ApresentarMenuPrincipal()
     {
         Console.Clear();
 
@@ -20,8 +37,20 @@ public class TelaPrincipal
         Console.WriteLine();
 
         Console.Write("Escolha uma das opções: ");
-        char opcaoEscolhida = Console.ReadLine()!.ToUpper()[0];
+        opcaoPrincipal = Console.ReadLine()!.ToUpper()[0];
+    }
 
-        return opcaoEscolhida;
+    public TelaBase ObterTela()
+    {
+        if (opcaoPrincipal == '1')
+            return new TelaFabricante(repositorioFabricante);
+
+        else if (opcaoPrincipal == '2')
+            return new TelaEquipamento(repositorioEquipamento, repositorioFabricante);
+
+        else if (opcaoPrincipal == '3')
+            return new TelaChamado(repositorioChamado, repositorioEquipamento);
+
+        return null!;
     }
 }
