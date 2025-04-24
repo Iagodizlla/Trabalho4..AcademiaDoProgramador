@@ -16,7 +16,7 @@ class Program
         {
             telaPrincipal.ApresentarMenuPrincipal();
 
-            TelaBase telaSelecionada = telaPrincipal.ObterTela();
+            ITelaCrud telaSelecionada = telaPrincipal.ObterTela();
 
             char opcaoEscolhida = telaSelecionada.ApresentarMenu();
 

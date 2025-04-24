@@ -4,7 +4,7 @@ using Trabalho4.AP.Util;
 
 namespace Trabalho4.AP.ModuloChamado;
 
-public class TelaChamado : TelaBase
+public class TelaChamado : TelaBase<Chamado>, ITelaCrud
 {
     public RepositorioChamado repositorioChamado;
     public RepositorioEquipamento repositorioEquipamento;
@@ -33,16 +33,11 @@ public class TelaChamado : TelaBase
             "Id", "Data de Abertura", "Título", "Descrição", "Equipamento", "Tempo Decorrido"
         );
 
-        EntidadeBase[] registros = repositorioChamado.SelecionarRegistros();
-
-        Chamado[] chamadosCadastrados = new Chamado[registros.Length];
+        Chamado[] registros = repositorioChamado.SelecionarRegistros();
 
         for (int i = 0; i < registros.Length; i++)
-            chamadosCadastrados[i] = (Chamado)registros[i];
-
-        for (int i = 0; i < chamadosCadastrados.Length; i++)
         {
-            Chamado c = chamadosCadastrados[i];
+            Chamado c = registros[i];
 
             if (c == null)
                 continue;
@@ -60,7 +55,7 @@ public class TelaChamado : TelaBase
         Notificador.ExibirMensagem("Pressione ENTER para continuar...", ConsoleColor.DarkYellow);
     }
 
-    public override EntidadeBase ObterDados()
+    public override Chamado ObterDados()
     {
         Console.Write("Digite o título do chamado: ");
         string titulo = Console.ReadLine()!.Trim();
@@ -94,16 +89,11 @@ public class TelaChamado : TelaBase
             "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
         );
 
-        EntidadeBase[] registros = repositorioEquipamento.SelecionarRegistros();
-
-        Equipamento[] equipamentosCadastrados = new Equipamento[registros.Length];
+        Equipamento[] registros = repositorioEquipamento.SelecionarRegistros();
 
         for (int i = 0; i < registros.Length; i++)
-            equipamentosCadastrados[i] = (Equipamento)registros[i];
-
-        for (int i = 0; i < equipamentosCadastrados.Length; i++)
         {
-            Equipamento e = equipamentosCadastrados[i];
+            Equipamento e = registros[i];
 
             if (e == null) continue;
 

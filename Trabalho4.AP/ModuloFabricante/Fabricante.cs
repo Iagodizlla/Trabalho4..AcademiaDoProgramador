@@ -4,7 +4,7 @@ using Trabalho4.AP.Compartilhado;
 
 namespace Trabalho4.AP.ModuloFabricante;
 
-public class Fabricante : EntidadeBase
+public class Fabricante : EntidadeBase<Fabricante>
 {
     public string Nome { get; set; }
     public string Email { get; set; }
@@ -88,10 +88,8 @@ public class Fabricante : EntidadeBase
         }
     }
 
-    public override void AtualizarRegistro(EntidadeBase registroEditado)
+    public override void AtualizarRegistro(Fabricante fabricanteEditado)
     {
-        Fabricante fabricanteEditado = (Fabricante)registroEditado;
-
         Nome = fabricanteEditado.Nome;
         Email = fabricanteEditado.Email;
         Telefone = fabricanteEditado.Telefone;

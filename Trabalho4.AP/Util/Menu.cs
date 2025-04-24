@@ -40,7 +40,7 @@ public class Menu
         opcaoPrincipal = Console.ReadLine()!.ToUpper()[0];
     }
 
-    public TelaBase ObterTela()
+    public ITelaCrud ObterTela()
     {
         if (opcaoPrincipal == '1')
             return new TelaFabricante(repositorioFabricante);

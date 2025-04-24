@@ -3,7 +3,7 @@ using Trabalho4.AP.Compartilhado;
 
 namespace Trabalho4.AP.ModuloEquipamento;
 
-public class Equipamento : EntidadeBase
+public class Equipamento : EntidadeBase<Equipamento>
 {
     public string Nome { get; set; }
     public Fabricante Fabricante { get; set; }
@@ -27,10 +27,8 @@ public class Equipamento : EntidadeBase
         Fabricante = fabricante;
     }
 
-    public override void AtualizarRegistro(EntidadeBase registroAtualizado)
+    public override void AtualizarRegistro(Equipamento equipamentoAtualizado)
     {
-        Equipamento equipamentoAtualizado = (Equipamento)registroAtualizado;
-
         Nome = equipamentoAtualizado.Nome;
         DataFabricacao = equipamentoAtualizado.DataFabricacao;
         PrecoAquisicao = equipamentoAtualizado.PrecoAquisicao;

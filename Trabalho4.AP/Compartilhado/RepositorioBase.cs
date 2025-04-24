@@ -1,18 +1,18 @@
 ﻿namespace Trabalho4.AP.Compartilhado;
 
-public abstract class RepositorioBase
+public abstract class RepositorioBase<T> where T : EntidadeBase<T>
 {
-    private EntidadeBase[] registros = new EntidadeBase[100];
+    private T[] registros = new T[100];
     private int contadorIds = 0;
 
-    public void CadastrarRegistro(EntidadeBase novoRegistro)
+    public void CadastrarRegistro(T novoRegistro)
     {
         novoRegistro.Id = ++contadorIds;
 
         InserirRegistro(novoRegistro);
     }
 
-    public bool EditarRegistro(int idRegistro, EntidadeBase registroEditado)
+    public bool EditarRegistro(int idRegistro, T registroEditado)
     {
         for (int i = 0; i < registros.Length; i++)
         {
@@ -47,16 +47,16 @@ public abstract class RepositorioBase
         return false;
     }
 
-    public EntidadeBase[] SelecionarRegistros()
+    public T[] SelecionarRegistros()
     {
         return registros;
     }
 
-    public EntidadeBase SelecionarRegistroPorId(int idRegistro)
+    public T SelecionarRegistroPorId(int idRegistro)
     {
         for (int i = 0; i < registros.Length; i++)
         {
-            EntidadeBase e = registros[i];
+            T e = registros[i];
 
             if (e == null)
                 continue;
@@ -68,7 +68,7 @@ public abstract class RepositorioBase
         return null!;
     }
 
-    private void InserirRegistro(EntidadeBase registro)
+    private void InserirRegistro(T registro)
     {
         for (int i = 0; i < registros.Length; i++)
         {

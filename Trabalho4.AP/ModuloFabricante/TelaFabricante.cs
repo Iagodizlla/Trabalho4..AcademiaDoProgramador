@@ -3,7 +3,7 @@ using Trabalho4.AP.Util;
 
 namespace Trabalho4.AP.ModuloFabricante;
 
-public class TelaFabricante : TelaBase
+public class TelaFabricante : TelaBase<Fabricante>, ITelaCrud
 {
     public RepositorioFabricante repositorioFabricante;
 
@@ -28,15 +28,11 @@ public class TelaFabricante : TelaBase
             "Id", "Nome", "Email", "Telefone", "Qtd. Equipamentos"
         );
 
-        EntidadeBase[] registros = repositorioFabricante.SelecionarRegistros();
-        Fabricante[] fabricantesCadastrados = new Fabricante[registros.Length];
+        Fabricante[] registros = repositorioFabricante.SelecionarRegistros();
 
         for (int i = 0; i < registros.Length; i++)
-            fabricantesCadastrados[i] = (Fabricante)registros[i];
-
-        for (int i = 0; i < fabricantesCadastrados.Length; i++)
         {
-            Fabricante f = fabricantesCadastrados[i];
+            Fabricante f = registros[i];
 
             if (f == null) continue;
 
@@ -51,7 +47,7 @@ public class TelaFabricante : TelaBase
         Notificador.ExibirMensagem("Pressione ENTER para continuar...", ConsoleColor.DarkYellow);
     }
 
-    public override EntidadeBase ObterDados()
+    public override Fabricante ObterDados()
     {
         Console.Write("Digite o nome do fabricante: ");
         string nome = Console.ReadLine()!;

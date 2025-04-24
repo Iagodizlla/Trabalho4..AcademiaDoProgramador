@@ -4,7 +4,7 @@ using Trabalho4.AP.Util;
 
 namespace Trabalho4.AP.ModuloEquipamento;
 
-public class TelaEquipamento : TelaBase
+public class TelaEquipamento : TelaBase<Equipamento>, ITelaCrud
 {
     public RepositorioEquipamento repositorioEquipamento;
     public RepositorioFabricante repositorioFabricante;
@@ -141,16 +141,11 @@ public class TelaEquipamento : TelaBase
             "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
         );
 
-        EntidadeBase[] registros = repositorioEquipamento.SelecionarRegistros();
-
-        Equipamento[] equipamentosCadastrados = new Equipamento[registros.Length];
+        Equipamento[] registros = repositorioEquipamento.SelecionarRegistros();
 
         for (int i = 0; i < registros.Length; i++)
-            equipamentosCadastrados[i] = (Equipamento)registros[i];
-
-        for (int i = 0; i < equipamentosCadastrados.Length; i++)
         {
-            Equipamento e = equipamentosCadastrados[i];
+            Equipamento e = registros[i];
 
             if (e == null) continue;
 
@@ -165,7 +160,7 @@ public class TelaEquipamento : TelaBase
         Notificador.ExibirMensagem("Pressione ENTER para continuar...", ConsoleColor.DarkYellow);
     }
 
-    public override EntidadeBase ObterDados()
+    public override Equipamento ObterDados()
     {
         Console.Write("Digite o nome do equipamento: ");
         string nome = Console.ReadLine()!;
@@ -211,15 +206,11 @@ public class TelaEquipamento : TelaBase
             "Id", "Nome", "Email", "Telefone", "Qtd. Equipamentos"
         );
 
-        EntidadeBase[] registros = repositorioFabricante.SelecionarRegistros();
-        Fabricante[] fabricantesCadastrados = new Fabricante[registros.Length];
+        Fabricante[] registros = repositorioFabricante.SelecionarRegistros();
 
         for (int i = 0; i < registros.Length; i++)
-            fabricantesCadastrados[i] = (Fabricante)registros[i];
-
-        for (int i = 0; i < fabricantesCadastrados.Length; i++)
         {
-            Fabricante f = fabricantesCadastrados[i];
+            Fabricante f = registros[i];
 
             if (f == null)
                 continue;
