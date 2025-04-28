@@ -5,9 +5,9 @@ namespace Trabalho4.AP.ModuloFabricante;
 
 public class TelaFabricante : TelaBase<Fabricante>, ITelaCrud
 {
-    public RepositorioFabricante repositorioFabricante;
+    public IRepositorioFabricante repositorioFabricante;
 
-    public TelaFabricante(RepositorioFabricante repositorioFabricante)
+    public TelaFabricante(IRepositorioFabricante repositorioFabricante)
         : base("Fabricante", repositorioFabricante)
     {
         this.repositorioFabricante = repositorioFabricante;

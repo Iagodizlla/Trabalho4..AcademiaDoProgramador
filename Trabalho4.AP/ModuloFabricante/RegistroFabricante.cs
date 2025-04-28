@@ -2,6 +2,4 @@
 
 namespace Trabalho4.AP.ModuloFabricante;
 
-public class RepositorioFabricante : RepositorioBaseEmMemoria<Fabricante>
-{ 
-}
+public class RepositorioFabricante : RepositorioBaseEmMemoria<Fabricante>, IRepositorioFabricante;

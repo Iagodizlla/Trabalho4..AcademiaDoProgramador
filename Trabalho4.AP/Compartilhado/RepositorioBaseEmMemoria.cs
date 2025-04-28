@@ -68,7 +68,7 @@ public abstract class RepositorioBaseEmMemoria<T> where T : EntidadeBase<T>
         return null!;
     }
 
-    private void InserirRegistro(T registro)
+    public void InserirRegistro(T registro)
     {
         for (int i = 0; i < registros.Length; i++)
         {

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Trabalho4.AP.Compartilhado
+namespace Trabalho4.AP.Compartilhado;
+
+public interface ITelaCrud
 {
-    public interface ITelaCrud
-    {
-        char ApresentarMenu();
-        void CadastrarRegistro();
-        void EditarRegistro();
-        void ExcluirRegistro();
-        void VisualizarRegistros(bool exibirCabecalho);
-    }
+    char ApresentarMenu();
+    void CadastrarRegistro();
+    void EditarRegistro();
+    void ExcluirRegistro();
+    void VisualizarRegistros(bool exibirCabecalho);
 }

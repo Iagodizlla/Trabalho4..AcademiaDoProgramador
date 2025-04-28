@@ -2,6 +2,4 @@
 
 namespace Trabalho4.AP.ModuloEquipamento;
 
-public class RepositorioEquipamento : RepositorioBaseEmMemoria<Equipamento>
-{
-}
+public class RepositorioEquipamento : RepositorioBaseEmMemoria<Equipamento>, IRepositorioEquipamento;
