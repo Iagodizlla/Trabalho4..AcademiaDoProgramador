@@ -5,9 +5,9 @@ namespace Trabalho4.AP.Compartilhado;
 public abstract class TelaBase<T> where T : EntidadeBase<T>
 {
     protected string nomeEntidade;
-    private RepositorioBase<T> repositorio;
+    private RepositorioBaseEmMemoria<T> repositorio;
 
-    protected TelaBase(string nomeEntidade, RepositorioBase<T> repositorio)
+    protected TelaBase(string nomeEntidade, RepositorioBaseEmMemoria<T> repositorio)
     {
         this.nomeEntidade = nomeEntidade;
         this.repositorio = repositorio;

@@ -2,6 +2,6 @@
 
 namespace Trabalho4.AP.ModuloFabricante;
 
-public class RepositorioFabricante : RepositorioBase<Fabricante>
+public class RepositorioFabricante : RepositorioBaseEmMemoria<Fabricante>
 { 
 }
