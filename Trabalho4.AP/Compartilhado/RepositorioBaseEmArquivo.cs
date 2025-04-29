@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Trabalho4.AP.ModuloFabricante;
 
 namespace Trabalho4.AP.Compartilhado;
@@ -83,7 +84,12 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
     protected void Serializar()
     {
         string caminhoCompleto = Path.Combine(caminhoPastaTemp, nomeArquivo);
-        string json = JsonSerializer.Serialize(registros);
+
+        JsonSerializerOptions jsonOpcoes = new JsonSerializerOptions();
+        jsonOpcoes.WriteIndented = true;
+        jsonOpcoes.ReferenceHandler = ReferenceHandler.Preserve;
+
+        string json = JsonSerializer.Serialize(registros, jsonOpcoes);
 
         if (!Directory.Exists(caminhoPastaTemp))
             Directory.CreateDirectory(caminhoPastaTemp);
@@ -104,7 +110,10 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
         if (string.IsNullOrWhiteSpace(json))
             return registrosArmazenados;
 
-        registrosArmazenados = JsonSerializer.Deserialize<List<T>>(json)!;
+        JsonSerializerOptions jsonOpcoes = new JsonSerializerOptions();
+        jsonOpcoes.ReferenceHandler = ReferenceHandler.Preserve;
+
+        registrosArmazenados = JsonSerializer.Deserialize<List<T>>(json, jsonOpcoes)!;
 
         return registrosArmazenados;
     }
