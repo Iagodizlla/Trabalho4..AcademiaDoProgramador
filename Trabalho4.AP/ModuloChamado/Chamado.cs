@@ -18,8 +18,11 @@ public class Chamado : EntidadeBase<Chamado>
             return diferencaTempo.Days;
         }
     }
+    public Chamado()
+    {
+    }
 
-    public Chamado(string titulo, string descricao, Equipamento equipamento)
+    public Chamado(string titulo, string descricao, Equipamento equipamento) : this()
     {
         Titulo = titulo;
         Descricao = descricao;

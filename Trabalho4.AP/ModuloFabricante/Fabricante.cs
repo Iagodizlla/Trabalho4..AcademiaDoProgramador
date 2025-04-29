@@ -25,12 +25,15 @@ public class Fabricante : EntidadeBase<Fabricante>
         }
     }
 
-    public Fabricante(string nome, string email, string telefone)
+    public Fabricante()
+    {
+        Equipamentos = new List<Equipamento>();
+    }
+    public Fabricante(string nome, string email, string telefone) : this()
     {
         Nome = nome;
         Email = email;
         Telefone = telefone;
-        Equipamentos = new List<Equipamento>();
     }
 
     public override string Validar()
@@ -58,7 +61,7 @@ public class Fabricante : EntidadeBase<Fabricante>
         return erros;
     }
 
-        public void AdicionarEquipamento(Equipamento equipamento)
+    public void AdicionarEquipamento(Equipamento equipamento)
     {
         Equipamentos.Add(equipamento);
     }

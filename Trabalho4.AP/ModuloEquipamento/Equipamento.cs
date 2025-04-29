@@ -18,9 +18,12 @@ public class Equipamento : EntidadeBase<Equipamento>
             return $"{tresPrimeirosCaracteres}-{Id}";
         }
     }
-
-    public Equipamento(string nome, decimal precoAquisicao, DateTime dataFabricacao, Fabricante fabricante)
+    public Equipamento()
     {
+    }
+    public Equipamento(string nome, decimal precoAquisicao, DateTime dataFabricacao, Fabricante fabricante) : this()
+    {
+
         Nome = nome;
         PrecoAquisicao = precoAquisicao;
         DataFabricacao = dataFabricacao;
