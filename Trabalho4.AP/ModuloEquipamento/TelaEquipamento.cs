@@ -7,9 +7,9 @@ namespace Trabalho4.AP.ModuloEquipamento;
 public class TelaEquipamento : TelaBase<Equipamento>, ITelaCrud
 {
     public IRepositorioEquipamento repositorioEquipamento;
-    public RepositorioFabricante repositorioFabricante;
+    public RepositorioFabricanteEmMemoria repositorioFabricante;
 
-    public TelaEquipamento(IRepositorioEquipamento repositorioEquipamento, RepositorioFabricante repositorioFabricante)
+    public TelaEquipamento(IRepositorioEquipamento repositorioEquipamento, RepositorioFabricanteEmMemoria repositorioFabricante)
         : base("Equipamento", repositorioEquipamento)
     {
         this.repositorioEquipamento = repositorioEquipamento;

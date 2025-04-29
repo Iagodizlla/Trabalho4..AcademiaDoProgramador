@@ -7,9 +7,9 @@ namespace Trabalho4.AP.ModuloChamado;
 public class TelaChamado : TelaBase<Chamado>, ITelaCrud
 {
     public IRepositorioChamado repositorioChamado;
-    public RepositorioEquipamento repositorioEquipamento;
+    public RepositorioEquipamentoEmMemoria repositorioEquipamento;
 
-    public TelaChamado(IRepositorioChamado repositorioChamado, RepositorioEquipamento repositorioEquipamento)
+    public TelaChamado(IRepositorioChamado repositorioChamado, RepositorioEquipamentoEmMemoria repositorioEquipamento)
         : base("Chamado", repositorioChamado)
     {
         this.repositorioChamado = repositorioChamado;

@@ -8,15 +8,15 @@ namespace Trabalho4.AP.Util;
 public class Menu
 {
     private char opcaoPrincipal;
-    private RepositorioFabricante repositorioFabricante;
-    private RepositorioEquipamento repositorioEquipamento;
-    private RepositorioChamado repositorioChamado;
+    private IRepositorioFabricante repositorioFabricante;
+    private IRepositorioEquipamento repositorioEquipamento;
+    private IRepositorioChamado repositorioChamado;
 
     public Menu()
     {
-        this.repositorioFabricante = new RepositorioFabricante();
-        this.repositorioEquipamento = new RepositorioEquipamento();
-        this.repositorioChamado = new RepositorioChamado();
+        this.repositorioFabricante = new RepositorioFabricanteEmMemoria();
+        this.repositorioEquipamento = new RepositorioEquipamentoEmMemoria();
+        this.repositorioChamado = new RepositorioChamadoEmMemoria();
     }
 
     public void ApresentarMenuPrincipal()
