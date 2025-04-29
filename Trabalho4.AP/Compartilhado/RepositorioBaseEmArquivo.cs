@@ -8,7 +8,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
 {
     protected string caminhoPastaTemp = "C:\\tempo";
     protected string nomeArquivo;
-    private T[] registros = new T[100];
+    private List<T> registros = new List<T>();
     private int contadorIds;
 
 
@@ -16,7 +16,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
     {
         this.nomeArquivo = nomeArquivo;
 
-        registros = Deserializar().ToArray();
+        registros = Deserializar();
 
         int maiorId = 0;
 
@@ -31,82 +31,65 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
     {
         novoRegistro.Id = ++contadorIds;
 
-        InserirRegistro(novoRegistro);
+        registros.Add(novoRegistro);
 
         Serializar();
     }
 
     public bool EditarRegistro(int idRegistro, T registroEditado)
     {
-        for (int i = 0; i < registros.Length; i++)
+        foreach (var registro in registros)
         {
-            if (registros[i] == null)
-                continue;
-
-            else if (registros[i].Id == idRegistro)
+            if (registro.Id == idRegistro)
             {
-                registros[i].AtualizarRegistro(registroEditado);
+                registro.AtualizarRegistro(registroEditado);
 
                 Serializar();
 
                 return true;
             }
         }
-
         return false;
     }
 
     public bool ExcluirRegistro(int idRegistro)
     {
-        for (int i = 0; i < registros.Length; i++)
+        T registroSelecionado = SelecionarRegistroPorId(idRegistro);
+
+        if (registroSelecionado != null)
         {
-            if (registros[i] == null)
-                continue;
-
-            else if (registros[i].Id == idRegistro)
-            {
-                registros[i] = null!;
-
-                Serializar();
-
-                return true;
-            }
+            registros.Remove(registroSelecionado);
+            return true;
         }
 
         return false;
     }
 
-    public T[] SelecionarRegistros()
+    public List<T> SelecionarRegistros()
     {
         return registros;
     }
 
     public T SelecionarRegistroPorId(int idRegistro)
     {
-        for (int i = 0; i < registros.Length; i++)
+        foreach (var registro in registros)
         {
-            T e = registros[i];
-
-            if (e == null)
-                continue;
-
-            else if (e.Id == idRegistro)
-                return e;
+            if (registro.Id == idRegistro)
+                return registro;
         }
-
         return null!;
     }
 
     public void InserirRegistro(T registro)
     {
-        for (int i = 0; i < registros.Length; i++)
-        {
-            if (registros[i] == null)
-            {
-                registros[i] = registro;
-                return;
-            }
-        }
+        //for (int i = 0; i < registros.Length; i++)
+        //{
+        //    if (registros[i] == null)
+        //    {
+        //        registros[i] = registro;
+        //        return;
+        //    }
+        //}
     }
     protected void Serializar()
     {
