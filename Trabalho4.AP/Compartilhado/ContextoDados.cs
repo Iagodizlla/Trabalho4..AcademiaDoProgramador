@@ -59,7 +59,7 @@ public class ContextoDados
         if(contextoArmazenado == null) return;
 
         this.Fabricantes = contextoArmazenado.Fabricantes;
-        this.Chamados = contextoArmazenado.Chamados;
         this.Equipamentos = contextoArmazenado.Equipamentos;
+        this.Chamados = contextoArmazenado.Chamados;
     }
 }
