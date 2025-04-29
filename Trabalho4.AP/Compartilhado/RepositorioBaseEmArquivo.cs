@@ -91,6 +91,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
         //    }
         //}
     }
+
     protected void Serializar()
     {
         string caminhoCompleto = Path.Combine(caminhoPastaTemp, nomeArquivo);
@@ -101,6 +102,7 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
 
         File.WriteAllText(caminhoCompleto, json);
     }
+    
     protected List<T> Deserializar()
     {
         List<T> registrosArmazenados = [];
