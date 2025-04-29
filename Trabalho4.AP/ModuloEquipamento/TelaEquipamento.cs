@@ -7,9 +7,9 @@ namespace Trabalho4.AP.ModuloEquipamento;
 public class TelaEquipamento : TelaBase<Equipamento>, ITelaCrud
 {
     public IRepositorioEquipamento repositorioEquipamento;
-    public RepositorioFabricanteEmMemoria repositorioFabricante;
+    public IRepositorioFabricante repositorioFabricante;
 
-    public TelaEquipamento(IRepositorioEquipamento repositorioEquipamento, RepositorioFabricanteEmMemoria repositorioFabricante)
+    public TelaEquipamento(IRepositorioEquipamento repositorioEquipamento, IRepositorioFabricante repositorioFabricante)
         : base("Equipamento", repositorioEquipamento)
     {
         this.repositorioEquipamento = repositorioEquipamento;
@@ -141,18 +141,14 @@ public class TelaEquipamento : TelaBase<Equipamento>, ITelaCrud
             "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
         );
 
-        Equipamento[] registros = repositorioEquipamento.SelecionarRegistros();
-
-        for (int i = 0; i < registros.Length; i++)
+        List<Equipamento> registros = repositorioEquipamento.SelecionarRegistros();
+        foreach (Equipamento e in registros)
         {
-            Equipamento e = registros[i];
-
-            if (e == null) continue;
-
             Console.WriteLine(
                 "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -15} | {5, -10}",
                 e.Id, e.Nome, e.NumeroSerie, e.Fabricante.Nome, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
             );
+
         }
 
         Console.WriteLine();
@@ -206,15 +202,10 @@ public class TelaEquipamento : TelaBase<Equipamento>, ITelaCrud
             "Id", "Nome", "Email", "Telefone", "Qtd. Equipamentos"
         );
 
-        Fabricante[] registros = repositorioFabricante.SelecionarRegistros();
+        List<Fabricante> registros = repositorioFabricante.SelecionarRegistros();
 
-        for (int i = 0; i < registros.Length; i++)
+        foreach(Fabricante f in registros)
         {
-            Fabricante f = registros[i];
-
-            if (f == null)
-                continue;
-
             Console.WriteLine(
             "{0, -6} | {1, -20} | {2, -30} | {3, -30} | {4, -20}",
                 f.Id, f.Nome, f.Email, f.Telefone, f.QuantidadeEquipamentos

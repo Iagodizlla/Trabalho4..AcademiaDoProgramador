@@ -80,18 +80,6 @@ public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase<T>
         return null!;
     }
 
-    public void InserirRegistro(T registro)
-    {
-        //for (int i = 0; i < registros.Length; i++)
-        //{
-        //    if (registros[i] == null)
-        //    {
-        //        registros[i] = registro;
-        //        return;
-        //    }
-        //}
-    }
-
     protected void Serializar()
     {
         string caminhoCompleto = Path.Combine(caminhoPastaTemp, nomeArquivo);

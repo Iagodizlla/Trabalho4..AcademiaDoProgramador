@@ -14,9 +14,9 @@ public class Menu
 
     public Menu()
     {
-        this.repositorioFabricante = new RepositorioFabricanteEmMemoria();
-        this.repositorioEquipamento = new RepositorioEquipamentoEmMemoria();
-        this.repositorioChamado = new RepositorioChamadoEmMemoria();
+        this.repositorioFabricante = new RepositorioFabricanteEmArquivo();
+        this.repositorioEquipamento = new RepositorioEquipamentoEmArquivo();
+        this.repositorioChamado = new RepositorioChamadoEmArquivo();
     }
 
     public void ApresentarMenuPrincipal()

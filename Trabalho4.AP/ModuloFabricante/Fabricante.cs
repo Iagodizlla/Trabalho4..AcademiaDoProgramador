@@ -58,8 +58,7 @@ public class Fabricante : EntidadeBase<Fabricante>
         return erros;
     }
 
-
-    public void AdicionarEquipamento(Equipamento equipamento)
+        public void AdicionarEquipamento(Equipamento equipamento)
     {
         Equipamentos.Add(equipamento);
     }

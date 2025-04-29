@@ -7,9 +7,9 @@ namespace Trabalho4.AP.ModuloChamado;
 public class TelaChamado : TelaBase<Chamado>, ITelaCrud
 {
     public IRepositorioChamado repositorioChamado;
-    public RepositorioEquipamentoEmMemoria repositorioEquipamento;
+    public IRepositorioEquipamento repositorioEquipamento;
 
-    public TelaChamado(IRepositorioChamado repositorioChamado, RepositorioEquipamentoEmMemoria repositorioEquipamento)
+    public TelaChamado(IRepositorioChamado repositorioChamado, IRepositorioEquipamento repositorioEquipamento)
         : base("Chamado", repositorioChamado)
     {
         this.repositorioChamado = repositorioChamado;
@@ -33,15 +33,10 @@ public class TelaChamado : TelaBase<Chamado>, ITelaCrud
             "Id", "Data de Abertura", "Título", "Descrição", "Equipamento", "Tempo Decorrido"
         );
 
-        Chamado[] registros = repositorioChamado.SelecionarRegistros();
+        List<Chamado> registros = repositorioChamado.SelecionarRegistros();
 
-        for (int i = 0; i < registros.Length; i++)
+        foreach (Chamado c in registros)
         {
-            Chamado c = registros[i];
-
-            if (c == null)
-                continue;
-
             string tempoDecorrido = $"{c.TempoDecorrido} dia(s)";
 
             Console.WriteLine(
@@ -89,18 +84,14 @@ public class TelaChamado : TelaBase<Chamado>, ITelaCrud
             "Id", "Nome", "Num. Série", "Fabricante", "Preço", "Data de Fabricação"
         );
 
-        Equipamento[] registros = repositorioEquipamento.SelecionarRegistros();
-
-        for (int i = 0; i < registros.Length; i++)
+        List<Equipamento> registros = repositorioEquipamento.SelecionarRegistros();
+        foreach (Equipamento e in registros)
         {
-            Equipamento e = registros[i];
-
-            if (e == null) continue;
-
             Console.WriteLine(
                 "{0, -10} | {1, -15} | {2, -11} | {3, -15} | {4, -15} | {5, -10}",
                 e.Id, e.Nome, e.NumeroSerie, e.Fabricante, e.PrecoAquisicao.ToString("C2"), e.DataFabricacao.ToShortDateString()
             );
+
         }
 
         Console.WriteLine();

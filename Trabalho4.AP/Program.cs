@@ -18,19 +18,26 @@ class Program
 
             ITelaCrud telaSelecionada = telaPrincipal.ObterTela();
 
-            char opcaoEscolhida = telaSelecionada.ApresentarMenu();
-
-            switch (opcaoEscolhida)
+            if (telaSelecionada != null)
             {
-                case '1': telaSelecionada.CadastrarRegistro(); break;
+                char opcaoEscolhida = telaSelecionada.ApresentarMenu();
 
-                case '2': telaSelecionada.EditarRegistro(); break;
+                switch (opcaoEscolhida)
+                {
+                    case '1': telaSelecionada.CadastrarRegistro(); break;
 
-                case '3': telaSelecionada.ExcluirRegistro(); break;
+                    case '2': telaSelecionada.EditarRegistro(); break;
 
-                case '4': telaSelecionada.VisualizarRegistros(true); break;
+                    case '3': telaSelecionada.ExcluirRegistro(); break;
 
-                default: break;
+                    case '4': telaSelecionada.VisualizarRegistros(true); break;
+
+                    default: break;
+                }
+            }
+            else
+            {
+                break;
             }
         }
     }
