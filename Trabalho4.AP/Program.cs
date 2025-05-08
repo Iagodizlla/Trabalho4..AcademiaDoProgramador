@@ -10,35 +10,17 @@ class Program
 {
     static void Main(string[] args)
     {
-        Menu telaPrincipal = new Menu();
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        while (true)
-        {
-            telaPrincipal.ApresentarMenuPrincipal();
+        WebApplication app = builder.Build();
 
-            ITelaCrud telaSelecionada = telaPrincipal.ObterTela();
+        app.MapGet("/", OlaMundo);
 
-            if (telaSelecionada != null)
-            {
-                char opcaoEscolhida = telaSelecionada.ApresentarMenu();
-
-                switch (opcaoEscolhida)
-                {
-                    case '1': telaSelecionada.CadastrarRegistro(); break;
-
-                    case '2': telaSelecionada.EditarRegistro(); break;
-
-                    case '3': telaSelecionada.ExcluirRegistro(); break;
-
-                    case '4': telaSelecionada.VisualizarRegistros(true); break;
-
-                    default: break;
-                }
-            }
-            else
-            {
-                break;
-            }
-        }
+        app.Run();
+    }
+    static Task OlaMundo(HttpContext context)
+    {
+        context.Response.ContentType = "text/plain; charset=utf-8";
+        return context.Response.WriteAsync("Olá, Mundo!");
     }
 }

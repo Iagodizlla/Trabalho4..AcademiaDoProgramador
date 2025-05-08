@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Trabalho4.AP": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59950;http://localhost:59951"
+    }
+  }
+}
