@@ -1,4 +1,5 @@
-﻿using Trabalho4.AP.Compartilhado;
+﻿using System.Text;
+using Trabalho4.AP.Compartilhado;
 using Trabalho4.AP.ModuloChamado;
 using Trabalho4.AP.ModuloEquipamento;
 using Trabalho4.AP.ModuloFabricante;
@@ -14,13 +15,38 @@ class Program
 
         WebApplication app = builder.Build();
 
-        app.MapGet("/", OlaMundo);
+        app.MapGet("/", PaginaInicial);
+
+        app.MapGet("/fabricantes/visualizar", VisualizarFabricantes);
 
         app.Run();
     }
-    static Task OlaMundo(HttpContext context)
+    static Task VisualizarFabricantes(HttpContext context)
     {
-        context.Response.ContentType = "text/plain; charset=utf-8";
-        return context.Response.WriteAsync("Olá, Mundo!");
+        ContextoDados contextoDados = new ContextoDados(true);
+        IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
+
+        repositorioFabricante.CadastrarRegistro(new Fabricante("dell", "teste@dell.com", "(11) 1111-1111"));
+        repositorioFabricante.CadastrarRegistro(new Fabricante("aple", "teste2@apple.com", "(21) 1111-1111"));
+
+        string conteudo = File.ReadAllText("Html/VisualizarFabricantes.html");
+
+        StringBuilder stringBuilder = new StringBuilder(conteudo);
+
+        foreach (var f in repositorioFabricante.SelecionarRegistros())
+        {
+            string itemlista = $"<li>{f.ToString()}</li> #fabricante#";
+            stringBuilder.Replace("#fabricante#", itemlista);
+        }
+
+        stringBuilder.Replace("#fabricante#", "");
+        conteudo = stringBuilder.ToString();
+
+        return context.Response.WriteAsync(conteudo);
+    }
+    static Task PaginaInicial(HttpContext context)
+    {
+        string conteudo = File.ReadAllText("Html/PaginaInicial.html");
+        return context.Response.WriteAsync(conteudo);
     }
 }
