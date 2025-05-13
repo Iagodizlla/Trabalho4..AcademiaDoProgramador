@@ -1,0 +1,25 @@
+﻿@{
+List<Fabricante> fabricantes;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Visualizar Fabricantes/Controle de Equipamentos</title>
+</head>
+<body>
+    <h1>Controle de Equipamentos</h1>
+    <h2>Visualizar Fabricantes</h2>
+
+    <ul>
+        @foreach(Fabricante f in fabricantes)
+        {
+            <li>@f.ToString() | 
+                <a href="/fabricantes/editar/@f.Id">Editar<a/> /
+                <a href="/fabricantes/excluir/@f.Id">Excluir<a/>
+            </li>
+        }
+    </ul>
+</body>
+</html>

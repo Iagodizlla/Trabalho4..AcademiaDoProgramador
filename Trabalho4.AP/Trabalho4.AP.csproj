@@ -8,7 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\ControladorFabricante\CadastrarFabricante.cshtml" />
+    <Content Remove="Views\ControladorFabricante\EditarFabricante.cshtml" />
+    <Content Remove="Views\ControladorFabricante\ExcluirFabricante.cshtml" />
+    <Content Remove="Views\ControladorFabricante\VisualizarFabricantes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Properties\launchSettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\ControladorFabricante\CadastrarFabricante.cshtml" />
+    <None Include="Views\ControladorFabricante\EditarFabricante.cshtml" />
+    <None Include="Views\ControladorFabricante\ExcluirFabricante.cshtml" />
+    <None Include="Views\ControladorFabricante\VisualizarFabricantes.cshtml" />
   </ItemGroup>
 
 </Project>
