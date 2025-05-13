@@ -13,9 +13,9 @@ class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        WebApplication app = builder.Build();
+        builder.Services.AddControllers();
 
-        app.MapGet("/", PaginaInicial);
+        WebApplication app = builder.Build();
 
         app.MapGet("/fabricantes/cadastrar", FormularioCadastrarFabricante);
         app.MapPost("/fabricantes/cadastrar", CadastrarFabricante);
@@ -26,7 +26,7 @@ class Program
         app.MapGet("/fabricantes/excluir/{id:int}", FormularioExcluirFabricante);
         app.MapPost("/fabricantes/ecluir/{id:int}", ExcluirFabricante);
 
-        app.MapGet("/fabricantes/visualizar", VisualizarFabricantes);
+        app.MapControllers();
 
         app.Run();
     }
@@ -103,7 +103,7 @@ class Program
 
         Fabricante fabricante = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        string conteudo = File.ReadAllText("Html/FormularioEditarFabricante.html");
+        string conteudo = File.ReadAllText("Html/EditarFabricante.html");
 
         StringBuilder sb = new StringBuilder(conteudo);
 
@@ -118,34 +118,9 @@ class Program
     }
     static Task FormularioCadastrarFabricante(HttpContext context)
     {
-        string conteudo = File.ReadAllText("Html/FormularioCadastrarFabricante.html");
+        string conteudo = File.ReadAllText("Html/CadastrarFabricante.html");
 
 
-        return context.Response.WriteAsync(conteudo);
-    }
-    static Task VisualizarFabricantes(HttpContext context)
-    {
-        ContextoDados contextoDados = new ContextoDados(true);
-        IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
-
-        string conteudo = File.ReadAllText("Html/VisualizarFabricantes.html");
-
-        StringBuilder stringBuilder = new StringBuilder(conteudo);
-
-        foreach (var f in repositorioFabricante.SelecionarRegistros())
-        {
-            string itemlista = $"<li>{f.ToString()} |  <a href=\"/fabricantes/editar/{f.Id}\">Editar<a/> / <a href=\"/fabricantes/excluir/{f.Id}>Excluir<a/> </li> #fabricante#";
-            stringBuilder.Replace("#fabricante#", itemlista);
-        }
-
-        stringBuilder.Replace("#fabricante#", "");
-        conteudo = stringBuilder.ToString();
-
-        return context.Response.WriteAsync(conteudo);
-    }
-    static Task PaginaInicial(HttpContext context)
-    {
-        string conteudo = File.ReadAllText("Html/PaginaInicial.html");
         return context.Response.WriteAsync(conteudo);
     }
     static Task EditarFabricante(HttpContext context)
