@@ -2,25 +2,25 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Cadastrar Fabricantes/Controle de Equipamentos</title>
+    <title>Editar Fabricantes/Controle de Equipamentos</title>
 </head>
 <body>
     <h1>Controle de Equipamentos</h1>
-    <h2>Cadastro de Fabricante</h2>
+    <h2>Editar de Fabricante</h2>
 
-    <form method="post" action="/fabricantes/cadastrar">
+    <form method="post" action="/fabricantes/editar/#id#">
         <label>Nome</label><br />
-        <input type="text" name="nome"/>
+        <input type="text" name="nome" value="#nome#"/>
 
         <br />
 
         <label>Email </label><br />
-        <input type="text" name="email"/>
+        <input type="text" name="email" value="#email#"/>
 
         <br />
 
         <label>Telefone</label><br />
-        <input type="text" name="telefone"/>
+        <input type="text" name="telefone" value="#telefone#"/>
         <hr />
 
         <button type="submit">Salvar</button>
