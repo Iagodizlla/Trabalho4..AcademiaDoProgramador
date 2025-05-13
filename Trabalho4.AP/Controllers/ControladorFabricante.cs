@@ -9,10 +9,8 @@ namespace Trabalho4.AP.Controllers;
 public class ControladorFabricante : Controller
 {
     [HttpGet("editar/{id:int}")]
-    public Task FormularioEditarFabricante(HttpContext context)
+    public IActionResult FormularioEditarFabricante([FromForm]int id)
     {
-        int id = Convert.ToInt32(context.GetRouteValue("id"));
-
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
@@ -29,18 +27,12 @@ public class ControladorFabricante : Controller
 
         string conteudoString = sb.ToString();
 
-        return HttpContext.Response.WriteAsync(conteudoString);
+        return Content(conteudoString, "text/html");
     }
 
     [HttpPost("editar/{id:int}")]
-    public Task EditarFabricante(HttpContext context)
+    public IActionResult EditarFabricante([FromForm]int id, [FromForm]string nome, [FromForm]string email, [FromForm]string telefone)
     {
-        int id = Convert.ToInt32(context.GetRouteValue("id"));
-
-        string nome = context.Request.Form["nome"].ToString();
-        string email = context.Request.Form["email"].ToString();
-        string telefone = context.Request.Form["telefone"].ToString();
-
         Fabricante fabricante = new Fabricante(nome, email, telefone);
 
         ContextoDados contextoDados = new ContextoDados(true);
@@ -55,14 +47,12 @@ public class ControladorFabricante : Controller
 
         string conteudoFinal = sb.ToString();
 
-        return HttpContext.Response.WriteAsync(conteudoFinal);
+        return Content(conteudoFinal, "text/html");
     }
 
     [HttpGet("exluir")]
-    public Task FormularioExcluirFabricante(HttpContext context)
+    public IActionResult FormularioExcluirFabricante([FromForm] int id)
     {
-        int id = Convert.ToInt32(context.GetRouteValue("id"));
-
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
@@ -81,14 +71,12 @@ public class ControladorFabricante : Controller
 
         string conteudoFinal = sb.ToString();
 
-        return HttpContext.Response.WriteAsync(conteudoFinal);
+        return Content(conteudoFinal, "text/html");
     }
 
     [HttpPost("excluir")]
-    public Task ExcluirFabricante(HttpContext context)
+    public IActionResult ExcluirFabricante([FromForm]int id)
     {
-        int id = Convert.ToInt32(context.GetRouteValue("id"));
-
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
@@ -101,24 +89,20 @@ public class ControladorFabricante : Controller
 
         string conteudoFinal = sb.ToString();
 
-        return HttpContext.Response.WriteAsync(conteudoFinal);
+        return Content(conteudoFinal, "text/html");
     }
 
     [HttpGet("cadastrar")]
-    public Task FormularioCadastrarFabricante(HttpContext context)
+    public IActionResult FormularioCadastrarFabricante()
     {
         string conteudo = System.IO.File.ReadAllText("Html/CadastrarFabricante.html");
 
-        return HttpContext.Response.WriteAsync(conteudo);
+        return Content(conteudo, "text/html");
     }
 
     [HttpPost("cadastrar")]
-    public Task CadastrarFabricante(HttpContext context)
+    public IActionResult CadastrarFabricante([FromForm]string nome, [FromForm]string email, [FromForm]string telefone)
     {
-        string nome = context.Request.Form["nome"].ToString();
-        string email = context.Request.Form["email"].ToString();
-        string telefone = context.Request.Form["telefone"].ToString();
-
         Fabricante fabricante = new Fabricante(nome, email, telefone);
 
         ContextoDados contextoDados = new ContextoDados(true);
@@ -133,7 +117,7 @@ public class ControladorFabricante : Controller
 
         string conteudoFinal = sb.ToString();
 
-        return HttpContext.Response.WriteAsync(conteudoFinal);
+        return Content(conteudoFinal, "text/html");
     }
 
     [HttpGet("visualizar")]
