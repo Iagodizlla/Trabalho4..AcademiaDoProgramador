@@ -1,8 +1,7 @@
 ﻿@using Trabalho4.AP.ModuloFabricante;
+@using Trabalho4.AP.Models;
 
-@{
-   Fabricante f = ViewBag.Fabricante;
-}
+@model ExcluirFabricanteViewModel;
 
 <!DOCTYPE html>
 <html>
@@ -13,9 +12,9 @@
 <body>
     <h1>Controle de Equipamentos</h1>
     <h2>Excluir Fabricante</h2>
-    <p>Quer realmente excluir o registro "@f.Nome"?</p>
+    <p>Quer realmente excluir o registro "@Model.Nome"?</p>
 
-    <form method="post" action="/fabricantes/excluir/@f.Id">
+    <form method="post" action="/fabricantes/excluir/@Model.Id">
         <button type="submit">Excluir</button>
         <a href="/fabricantes/visualizar">Voltar</a>
     </form>

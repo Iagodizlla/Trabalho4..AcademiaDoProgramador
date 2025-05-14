@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 using System.Text;
 using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.Models;
 using Trabalho4.AP.ModuloFabricante;
 
 namespace Trabalho4.AP.Controllers;
@@ -17,26 +18,27 @@ public class ControladorFabricante : Controller
 
         Fabricante fabricante = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        ViewBag.Fabricante = fabricante;
+        EditarFabricanteViewModel editarVM = new EditarFabricanteViewModel(
+            fabricante.Id,
+            fabricante.Nome,
+            fabricante.Telefone,
+            fabricante.Email
+            );
 
-        return View("Editar");
+        return View("Editar", editarVM);
     }
 
     [HttpPost("editar/{id:int}")]
-    public IActionResult EditarFabricante(
-        [FromRoute] int id, 
-        [FromForm] string nome, 
-        [FromForm] string email, 
-        [FromForm] string telefone)
+    public IActionResult EditarFabricante([FromRoute] int id, EditarFabricanteViewModel editarVm)
     {
-        Fabricante fabricante = new Fabricante(nome, email, telefone);
-
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
+        Fabricante fabricante = new Fabricante(editarVm.Nome, editarVm.Email, editarVm.Telefone);
+
         repositorioFabricante.EditarRegistro(id, fabricante);
 
-        ViewBag.Mensagem = $"O \"{fabricante.Nome}\" editado com sucesso!";
+        ViewBag.Mensagem = $"O \"{editarVm.Nome}\" editado com sucesso!";
 
         return View("Notificacao");
     }
@@ -49,9 +51,12 @@ public class ControladorFabricante : Controller
 
         Fabricante fabricante = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        ViewBag.Fabricante = fabricante;
+        ExcluirFabricanteViewModel excluirVM = new ExcluirFabricanteViewModel(
+            fabricante.Id,
+            fabricante.Nome
+            );
 
-        return View("Excluir");
+        return View("Excluir", excluirVM);
     }
 
     [HttpPost("excluir/{id:int}")]
@@ -70,23 +75,22 @@ public class ControladorFabricante : Controller
     [HttpGet("cadastrar")]
     public IActionResult FormularioCadastrarFabricante()
     {
-       return View("Cadastrar");
+        CadastrarFabricanteViewModel cadastrarVM = new CadastrarFabricanteViewModel();
+
+        return View("Cadastrar", cadastrarVM);
     }
 
     [HttpPost("cadastrar")]
-    public IActionResult CadastrarFabricante(
-        [FromForm]string nome, 
-        [FromForm]string email, 
-        [FromForm]string telefone)
+    public IActionResult CadastrarFabricante(CadastrarFabricanteViewModel cadastrarVM)
     {
-        Fabricante fabricante = new Fabricante(nome, email, telefone);
-
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
+        Fabricante fabricante = new Fabricante(cadastrarVM.Nome, cadastrarVM.Email, cadastrarVM.Telefone);
+
         repositorioFabricante.CadastrarRegistro(fabricante);
 
-        ViewBag.Mensagem = $"O \"{fabricante.Nome}\" cadastrado com sucesso!";
+        ViewBag.Mensagem = $"O \"{cadastrarVM.Nome}\" cadastrado com sucesso!";
 
         return View("Notificacao");
     }
@@ -97,8 +101,8 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        ViewBag.Fabricantes = repositorioFabricante.SelecionarRegistros();
+        List<Fabricante> fabricantes = repositorioFabricante.SelecionarRegistros();
         
-        return View("Visualizar");
+        return View("Visualizar", fabricantes);
     }
 }

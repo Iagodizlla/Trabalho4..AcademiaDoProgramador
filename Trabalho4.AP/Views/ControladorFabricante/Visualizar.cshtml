@@ -1,8 +1,7 @@
 ﻿@using Trabalho4.AP.ModuloFabricante;
+@using Trabalho4.AP.Models;
 
-@{
-    List<Fabricante> fabricantes = ViewBag.Fabricantes;
-}
+@model VisualizarFabricantesViewModel;
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +14,7 @@
     <h2>Visualizar Fabricantes</h2>
 
     <ul>
-        @foreach(Fabricante f in fabricantes)
+        @foreach (DetalhesFabricanteViewModel f in Model.Registros)
         {
             <li>@f.ToString() | 
                 <a href="/fabricantes/editar/@f.Id">Editar<a/> /
