@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Trabalho4.AP.ModuloFabricante;
+
+@{
+  Fabricante f = ViewBag.Fabricante;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,19 +14,19 @@
     <h1>Controle de Equipamentos</h1>
     <h2>Editar de Fabricante</h2>
 
-    <form method="post" action="/fabricantes/editar/#id#">
+    <form method="post" action="/fabricantes/editar/@f.Id">
         <label>Nome</label><br />
-        <input type="text" name="nome" value="#nome#"/>
+        <input type="text" name="nome" value="@f.Nome"/>
 
         <br />
 
         <label>Email </label><br />
-        <input type="text" name="email" value="#email#"/>
+        <input type="text" name="email" value="@f.Email"/>
 
         <br />
 
         <label>Telefone</label><br />
-        <input type="text" name="telefone" value="#telefone#"/>
+        <input type="text" name="telefone" value="@f.Telefone"/>
         <hr />
 
         <button type="submit">Salvar</button>

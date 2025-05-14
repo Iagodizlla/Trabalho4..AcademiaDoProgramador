@@ -10,29 +10,24 @@ namespace Trabalho4.AP.Controllers;
 public class ControladorFabricante : Controller
 {
     [HttpGet("editar/{id:int}")]
-    public IActionResult FormularioEditarFabricante([FromForm]int id)
+    public IActionResult FormularioEditarFabricante([FromRoute]int id)
     {
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
         Fabricante fabricante = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        string conteudo = System.IO.File.ReadAllText("Html/EditarFabricante.html");
+        ViewBag.Fabricante = fabricante;
 
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#id#", id.ToString());
-        sb.Replace("#nome#", fabricante.Nome);
-        sb.Replace("#email#", fabricante.Email);
-        sb.Replace("#telefone#", fabricante.Telefone);
-
-        string conteudoString = sb.ToString();
-
-        return Content(conteudoString, "text/html");
+        return View("Editar");
     }
 
     [HttpPost("editar/{id:int}")]
-    public IActionResult EditarFabricante([FromForm]int id, [FromForm]string nome, [FromForm]string email, [FromForm]string telefone)
+    public IActionResult EditarFabricante(
+        [FromRoute] int id, 
+        [FromForm] string nome, 
+        [FromForm] string email, 
+        [FromForm] string telefone)
     {
         Fabricante fabricante = new Fabricante(nome, email, telefone);
 
@@ -41,68 +36,48 @@ public class ControladorFabricante : Controller
 
         repositorioFabricante.EditarRegistro(id, fabricante);
 
-        string conteudo = System.IO.File.ReadAllText("Html/Notificacao.html");
+        ViewBag.Mensagem = $"O \"{fabricante.Nome}\" editado com sucesso!";
 
-        StringBuilder sb = new StringBuilder(conteudo);
-        sb.Replace("#mensagem#", fabricante.Nome + " editado com sucesso!");
-
-        string conteudoFinal = sb.ToString();
-
-        return Content(conteudoFinal, "text/html");
+        return View("Notificacao");
     }
 
-    [HttpGet("exluir")]
-    public IActionResult FormularioExcluirFabricante([FromForm] int id)
+    [HttpGet("excluir/{id:int}")]
+    public IActionResult FormularioExcluirFabricante([FromRoute] int id)
     {
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
         Fabricante fabricante = repositorioFabricante.SelecionarRegistroPorId(id);
 
-        repositorioFabricante.ExcluirRegistro(id);
+        ViewBag.Fabricante = fabricante;
 
-        string conteudo = System.IO.File.ReadAllText("Html/ExcluirFabricante.html");
-
-        StringBuilder sb = new StringBuilder(conteudo);
-
-        sb.Replace("#id#", id.ToString());
-        sb.Replace("#fabricante#", fabricante.Nome);
-
-        sb.Replace("#mensagem#", "Fabricante excluído com sucesso!");
-
-        string conteudoFinal = sb.ToString();
-
-        return Content(conteudoFinal, "text/html");
+        return View("Excluir");
     }
 
-    [HttpPost("excluir")]
-    public IActionResult ExcluirFabricante([FromForm]int id)
+    [HttpPost("excluir/{id:int}")]
+    public IActionResult ExcluirFabricante([FromRoute]int id)
     {
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
         repositorioFabricante.ExcluirRegistro(id);
 
-        string conteudo = System.IO.File.ReadAllText("Html/Notificacao.html");
+        ViewBag.Mensagem = $"O registro foi excluido com sucesso!";
 
-        StringBuilder sb = new StringBuilder(conteudo);
-        sb.Replace("#mensagem#", "registro excluido com sucesso!");
-
-        string conteudoFinal = sb.ToString();
-
-        return Content(conteudoFinal, "text/html");
+        return View("Notificacao");
     }
 
     [HttpGet("cadastrar")]
     public IActionResult FormularioCadastrarFabricante()
     {
-        string conteudo = System.IO.File.ReadAllText("Html/CadastrarFabricante.html");
-
-        return Content(conteudo, "text/html");
+       return View("Cadastrar");
     }
 
     [HttpPost("cadastrar")]
-    public IActionResult CadastrarFabricante([FromForm]string nome, [FromForm]string email, [FromForm]string telefone)
+    public IActionResult CadastrarFabricante(
+        [FromForm]string nome, 
+        [FromForm]string email, 
+        [FromForm]string telefone)
     {
         Fabricante fabricante = new Fabricante(nome, email, telefone);
 
@@ -111,14 +86,9 @@ public class ControladorFabricante : Controller
 
         repositorioFabricante.CadastrarRegistro(fabricante);
 
-        string conteudo = System.IO.File.ReadAllText("Html/Notificacao.html");
+        ViewBag.Mensagem = $"O \"{fabricante.Nome}\" cadastrado com sucesso!";
 
-        StringBuilder sb = new StringBuilder(conteudo);
-        sb.Replace("#mensagem#", fabricante.Nome + " cadastrado com sucesso!");
-
-        string conteudoFinal = sb.ToString();
-
-        return Content(conteudoFinal, "text/html");
+        return View("Notificacao");
     }
 
     [HttpGet("visualizar")]
