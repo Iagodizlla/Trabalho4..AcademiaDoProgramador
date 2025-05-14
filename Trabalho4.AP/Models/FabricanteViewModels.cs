@@ -1,4 +1,5 @@
-﻿using Trabalho4.AP.ModuloFabricante;
+﻿using Trabalho4.AP.Extensoes;
+using Trabalho4.AP.ModuloFabricante;
 
 namespace Trabalho4.AP.Models;
 
@@ -7,13 +8,6 @@ public abstract class FormularioFabricanteViewModel
     public string Nome { get; set; }
     public string Telefone { get; set; }
     public string Email { get; set; }
-
-    public FormularioFabricanteViewModel(string nome, string telefone, string email)
-    {
-        Nome = nome;
-        Telefone = telefone;
-        Email = email;
-    }
 }
 
 public class ExcluirFabricanteViewModel
@@ -35,29 +29,18 @@ public class EditarFabricanteViewModel : FormularioFabricanteViewModel
 {
     public int Id { get; set; }
 
-    public EditarFabricanteViewModel()
-    {
-    }
+    public EditarFabricanteViewModel() { }
     public EditarFabricanteViewModel(int id, string nome, string telefone, string email) : this()
     {
         Id = id;
-        Nome = nome;
-        Telefone = telefone;
-        Email = email;
     }
 }
 
 public class CadastrarFabricanteViewModel : FormularioFabricanteViewModel
 {
-
-    public CadastrarFabricanteViewModel()
-    {
-    }
+    public CadastrarFabricanteViewModel() { }
     public CadastrarFabricanteViewModel(string nome, string telefone, string email) : this()
     {
-        Nome = nome;
-        Telefone = telefone;
-        Email = email;
     }
 }
 
@@ -72,12 +55,7 @@ public class VisualizarFabricantesViewModel
     {
         foreach (Fabricante f in fabricantes)
         {
-            DetalhesFabricanteViewModel detalhesVM = new DetalhesFabricanteViewModel(
-                f.Id,
-                f.Nome,
-                f.Email,
-                f.Telefone
-            );
+            DetalhesFabricanteViewModel detalhesVM = f.ParaViewModel();
             Registros.Add(detalhesVM);
         }
     }

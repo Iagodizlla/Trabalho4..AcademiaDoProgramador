@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 using System.Text;
 using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.Extensoes;
 using Trabalho4.AP.Models;
 using Trabalho4.AP.ModuloFabricante;
 
@@ -86,7 +87,7 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        Fabricante fabricante = new Fabricante(cadastrarVM.Nome, cadastrarVM.Email, cadastrarVM.Telefone);
+        Fabricante fabricante = cadastrarVM.ParaEntidade();
 
         repositorioFabricante.CadastrarRegistro(fabricante);
 
@@ -102,7 +103,9 @@ public class ControladorFabricante : Controller
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
         List<Fabricante> fabricantes = repositorioFabricante.SelecionarRegistros();
-        
-        return View("Visualizar", fabricantes);
+
+        VisualizarFabricantesViewModel fabricantesVM = new VisualizarFabricantesViewModel(fabricantes);
+
+        return View("Visualizar", fabricantesVM);
     }
 }
