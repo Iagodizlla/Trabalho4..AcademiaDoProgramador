@@ -127,6 +127,8 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
+        ViewBag.Fabricantes = repositorioFabricante.SelecionarRegistros();
+        
         return View("Visualizar");
     }
 }

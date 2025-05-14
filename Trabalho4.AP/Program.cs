@@ -13,10 +13,11 @@ class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllersWithViews();
 
         WebApplication app = builder.Build();
-        
+
+        app.UseRouting();
         app.MapControllers();
 
         app.Run();
