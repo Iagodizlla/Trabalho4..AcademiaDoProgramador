@@ -55,4 +55,8 @@ public class Equipamento : EntidadeBase<Equipamento>
 
         return erros;
     }
+    public override string ToString()
+    {
+        return $"Id: {Id}, Nome: {Nome}, Fabricante: {Fabricante.Nome}, Preço de Aquisição: {PrecoAquisicao:C}, Data de Fabricação: {DataFabricacao:d}, Número de Série: {NumeroSerie}";
+    }
 }
