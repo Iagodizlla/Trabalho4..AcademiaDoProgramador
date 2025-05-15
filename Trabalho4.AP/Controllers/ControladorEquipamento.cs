@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
-using Trabalho4.AP.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor.Compilation;
+using System.Text;
 using Trabalho4.AP.Compartilhado;
+using Trabalho4.AP.Extensoes;
+using Trabalho4.AP.Models;
 using Trabalho4.AP.ModuloEquipamento;
 
 namespace Trabalho4.AP.Controllers;
@@ -19,6 +20,7 @@ public class ControladorEquipamento : Controller
         List<Equipamento> equipamentos = repositorioEquipamento.SelecionarRegistros();
 
         VisualizarEquipamentoViewModel visualizarVM = new VisualizarEquipamentoViewModel(equipamentos);
+
         return View(visualizarVM);
     }
 
