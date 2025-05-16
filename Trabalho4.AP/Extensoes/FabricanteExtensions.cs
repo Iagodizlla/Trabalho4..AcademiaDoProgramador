@@ -9,13 +9,14 @@ public static class FabricanteExtensions
     {
         return new Fabricante(formularioVM.Nome, formularioVM.Email, formularioVM.Telefone);
     }
-    public static DetalhesFabricanteViewModel ParaViewModel(this Fabricante fabricante)
+
+    public static DetalhesFabricanteViewModel ParaDetalhesVM(this Fabricante fabricante)
     {
         return new DetalhesFabricanteViewModel(
-            fabricante.Id,
-            fabricante.Nome,
-            fabricante.Email,
-            fabricante.Telefone
+                fabricante.Id,
+                fabricante.Nome,
+                fabricante.Email,
+                fabricante.Telefone
         );
     }
 }

@@ -6,14 +6,17 @@ namespace Trabalho4.AP.Extensoes;
 
 public static class EquipamentoExtensions
 {
-    public static Equipamento ParaEntidade(this FormularioEquipamentoViewModel formularioVM, List<Fabricante> fabricantes)
+    public static Equipamento ParaEntidade(
+        this FormularioEquipamentoViewModel formularioVM,
+        List<Fabricante> fabricantes
+    )
     {
         Fabricante fabricanteSelecionado = null;
 
-        foreach (var fabricante in fabricantes)
+        foreach (var f in fabricantes)
         {
-            if (fabricante.Id == formularioVM.FabricanteId)
-                fabricanteSelecionado = fabricante;
+            if (f.Id == formularioVM.FabricanteId)
+                fabricanteSelecionado = f;
         }
 
         return new Equipamento(
@@ -23,6 +26,7 @@ public static class EquipamentoExtensions
             fabricanteSelecionado
         );
     }
+
     public static DetalhesEquipamentoViewModel ParaDetalhesVM(this Equipamento equipamento)
     {
         return new DetalhesEquipamentoViewModel(

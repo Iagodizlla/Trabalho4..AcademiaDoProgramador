@@ -1,0 +1,29 @@
+﻿@using Trabalho4.AP.ModuloChamado;
+@using Trabalho4.AP.Models;
+
+@model VisualizarChamadosViewModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Visualizar Chamados/Controle de Equipamentos</title>
+</head>
+<body>
+    <h1>Controle de Equipamentos</h1>
+    <h2>Visualizar Chamados</h2>
+
+    <a href="/">Página Inicial</a>
+
+    <ul>
+        @foreach (DetalhesChamadoViewModel e in Model.Registros)
+        {
+        <li>
+            @e.ToString() |
+                <a href="/chamados/editar/@e.Id">Editar<a /> /
+                <a href="/chamados/excluir/@e.Id">Excluir<a />
+        </li>
+        }
+    </ul>
+</body>
+</html>

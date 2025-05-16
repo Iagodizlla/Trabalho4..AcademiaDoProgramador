@@ -1,4 +1,4 @@
-﻿@using GestaoDeEquipamentos.ConsoleApp.Models
+﻿@using Trabalho4.AP.Models;
 
 @model EditarEquipamentoViewModel;
 
@@ -45,7 +45,7 @@
         <select name="FabricanteId" id="FabricanteId">
             @foreach (var f in @Model.FabricantesDisponiveis)
             {
-            <option value="@f.Id" @(f.Id= =Model.FabricanteId ? "selected" : "" )>@f.Nome</option>
+            <option value="@f.Id" @(f.Id==Model.FabricanteId ? "selected" : "" )>@f.Nome</option>
             }
         </select>
 

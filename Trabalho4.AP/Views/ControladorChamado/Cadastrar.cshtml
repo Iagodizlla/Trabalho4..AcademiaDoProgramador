@@ -1,0 +1,48 @@
+﻿@using Trabalho4.AP.ModuloChamado;
+@using Trabalho4.AP.Models;
+
+@model CadastrarChamadoViewModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastrar Chamados/Controle de Equipamentos</title>
+</head>
+<body>
+    <h1>Controle de Equipamentos</h1>
+    <h2>Cadastro de Chamados</h2>
+
+    <a href="/">Página Inicial</a> /
+    <a href="/chamados/visualizar">Visualizar Equipamentos</a>
+
+    <form method="post" action="/chamados/cadastrar">
+        <label for="Titulo">Titulo</label><br />
+        <input type="text" name="Tirulo" />
+
+        <br />
+
+        <label for="Descricao">Descricao</label><br />
+        <input type="text" name="Descricao" />
+
+        <br />
+
+        <label for="DataAbertura">Data de Abertura</label><br />
+        <input type="date" name="DataAbertura" />
+
+        <br />
+
+        <label for="EquipamentoId">Equipamento de Chamado</label><br />
+        <select name="EquipamentoId" id="EquipamentoId">
+            @foreach (var equipamento in Model.EquipamentosDisponiveis)
+            {
+                <option value="@equipamento.Id">@equipamento.Nome</option>
+            }
+        </select>
+        <hr />
+
+        <button type="submit">Salvar</button>
+
+    </form>
+</body>
+</html>
