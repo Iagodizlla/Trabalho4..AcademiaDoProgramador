@@ -10,13 +10,21 @@
     <title>Excluir Fabricantes/Controle de Equipamentos</title>
 </head>
 <body>
-    <h1>Controle de Equipamentos</h1>
-    <h2>Excluir Fabricante</h2>
+    <h1>Gestão de Equipamentos</h1>
 
-    <p>Quer realmente excluir o registro "@Model.Nome"?</p>
+    <hr />
 
-    <form method="post" action="/fabricantes/excluir/@Model.Id">
-        <button type="submit">Excluir</button>
+    <a href="/">Página Inicial</a> /
+    <a href="/fabricantes/visualizar">Visualizar Fabricantes</a>
+
+    <hr />
+
+    <h3>Exclusão de Fabricantes</h3>
+
+    <p>Você tem certeza que deseja excluir o registro "@Model.Nome"?</p>
+
+    <form action="/fabricantes/excluir/@Model.Id" method="post">
+        <button type="submit">Confirmar</button>
         <a href="/fabricantes/visualizar">Voltar</a>
     </form>
 </body>

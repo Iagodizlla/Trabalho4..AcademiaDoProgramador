@@ -1,0 +1,57 @@
+﻿@using GestaoDeEquipamentos.ConsoleApp.Models
+
+@model EditarEquipamentoViewModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Edição de Equipamento - Gestão de Equipamentos</title>
+</head>
+
+<body>
+    <h1>Gestão de Equipamentos</h1>
+
+    <hr />
+
+    <a href="/">Página Inicial</a> /
+    <a href="/equipamentos/visualizar">Visualizar Equipamentos</a>
+
+    <hr />
+
+    <h3>Edição de Equipamento</h3>
+
+    <form action="/equipamentos/editar/@Model.Id" method="post">
+        <label for="Nome">Nome do Equipamento:</label>
+        <br />
+        <input type="text" name="Nome" id="Nome" value="@Model.Nome" />
+
+        <br />
+
+        <label for="PrecoAquisicao">Preço de Aquisição do Equipamento:</label>
+        <br />
+        <input type="text" name="PrecoAquisicao" id="PrecoAquisicao" value="@Model.PrecoAquisicao.ToString(" N2")" />
+
+        <br />
+
+        <label for="DataFabricacao">Data de Fabricação do Equipamento:</label>
+        <br />
+        <input type="date" name="DataFabricacao" id="DataFabricacao" value="@Model.DataFabricacao.ToString(" yyyy-MM-dd")" />
+
+        <br />
+
+        <label for="FabricanteId">Fabricante do Equipamento:</label>
+        <br />
+        <select name="FabricanteId" id="FabricanteId">
+            @foreach (var f in @Model.FabricantesDisponiveis)
+            {
+            <option value="@f.Id" @(f.Id= =Model.FabricanteId ? "selected" : "" )>@f.Nome</option>
+            }
+        </select>
+
+        <hr />
+
+        <button type="submit">Gravar</button>
+    </form>
+</body>
+</html>

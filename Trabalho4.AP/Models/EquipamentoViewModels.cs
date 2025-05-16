@@ -12,7 +12,6 @@ public abstract class FormularioEquipamentoViewModel
     public List<SelecionarFabricanteViewModel> FabricantesDisponiveis { get; set; } = new List<SelecionarFabricanteViewModel>();
     public int FabricanteId { get; set; }
 }
-
 public class SelecionarFabricanteViewModel
 {
     public int Id { get; set; }
@@ -79,5 +78,15 @@ public class DetalhesEquipamentoViewModel
     public override string ToString()
     {
         return $"Id: {Id} - Nome: {Nome} - Fabricante: {NomeFabricante} - Preço de Aquisição: {PrecoAquisicao:C2} - Data de Fabricação: {DataFabricacao:d}";
+    }
+}
+public class EditarEquipamentoViewModel : FormularioFabricanteViewModel
+{
+    public int Id { get; set; }
+
+    public EditarEquipamentoViewModel() { }
+    public EditarEquipamentoViewModel(int id, string nome, decimal precoAquisicao, DateTime dataFabricacao, int fabricanteId) : this()
+    {
+        Id = id;
     }
 }
