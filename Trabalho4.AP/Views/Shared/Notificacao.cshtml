@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Trabalho4.AP.Models;
+@using Trabalho4.AP.Controllers;
+
+@model NotificacaoViewModel;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,6 +16,6 @@
     <a href="/">Voltar</a>
     <hr />
 
-    <p>@ViewBag.Mensagem</p>
+    <p>@Model.Mensagem</p>
 </body>
 </html>

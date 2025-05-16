@@ -1,7 +1,7 @@
 ﻿@using Trabalho4.AP.ModuloEquipamento;
 @using Trabalho4.AP.Models;
 
-@model VisualizarEquipamentoViewModel;
+@model VisualizarEquipamentosViewModel;
 
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,8 @@
 <body>
     <h1>Controle de Equipamentos</h1>
     <h2>Visualizar Equipamentos</h2>
+
+    <a href="/">Página Inicial</a>
 
     <ul>
         @foreach (DetalhesEquipamentoViewModel e in Model.Registros)

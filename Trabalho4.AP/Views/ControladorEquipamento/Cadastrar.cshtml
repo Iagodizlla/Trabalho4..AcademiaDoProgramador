@@ -1,10 +1,48 @@
-﻿<!DOCTYPE html>
+﻿@using Trabalho4.AP.ModuloEquipamento;
+@using Trabalho4.AP.Models;
+
+@model CadastrarEquipamentoViewModel;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Cadastrar Equipamentos/Controle de Equipamentos</title>
 </head>
 <body>
+    <h1>Controle de Equipamentos</h1>
+    <h2>Cadastro de Equipamento</h2>
 
+    <a href="/">Página Inicial</a> /
+    <a href="/equipamentos/visualizar">Visualizar Equipamentos</a>
+
+    <form method="post" action="/equipamentos/cadastrar">
+        <label for="Nome">Nome</label><br />
+        <input type="text" name="Nome" />
+
+        <br />
+
+        <label for="PrecoAquisicao">Preco </label><br />
+        <input type="text" name="PrecoAquisicao" />
+
+        <br />
+
+        <label for="DataFabricacao">Data de Fabricacao</label><br />
+        <input type="date" name="DataFabricacao" />
+
+        <br />
+
+        <label for="FabricanteId">Fabricante do Equipamento</label><br />
+        <select name="FabricanteId" id="FabricanteId">
+            @foreach (var fabricante in Model.FabricantesDisponiveis)
+            {
+                <option value="@fabricante.Id">@fabricante.Nome</option>
+            }
+        </select>
+        <hr />
+
+        <button type="submit">Salvar</button>
+
+    </form>
 </body>
 </html>

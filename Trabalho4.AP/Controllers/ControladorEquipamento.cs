@@ -5,28 +5,52 @@ using Trabalho4.AP.Compartilhado;
 using Trabalho4.AP.Extensoes;
 using Trabalho4.AP.Models;
 using Trabalho4.AP.ModuloEquipamento;
+using Trabalho4.AP.ModuloFabricante;
 
 namespace Trabalho4.AP.Controllers;
 
 [Route("equipamentos")]
 public class ControladorEquipamento : Controller
 {
-    [HttpGet("visualizar")]
-    public IActionResult Visualizar()
-    {
-        ContextoDados contexto = new ContextoDados(true);
-        RepositorioEquipamentoEmArquivo repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contexto);
-
-        List<Equipamento> equipamentos = repositorioEquipamento.SelecionarRegistros();
-
-        VisualizarEquipamentoViewModel visualizarVM = new VisualizarEquipamentoViewModel(equipamentos);
-
-        return View(visualizarVM);
-    }
-
     [HttpGet("cadastrar")]
-    public IActionResult Cadastrar()
+    public IActionResult ExibirFormularioCadastroEquipamento()
     {
-        return View();
+        var contextoDados = new ContextoDados(true);
+        var repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
+
+        var fabricantes = repositorioFabricante.SelecionarRegistros();
+
+        var cadastrarVM = new CadastrarEquipamentoViewModel(fabricantes);
+
+        return View("Cadastrar", cadastrarVM);
+    }
+    [HttpPost("cadastrar")]
+    public IActionResult CadastrarEquipamento(CadastrarEquipamentoViewModel cadastrarVM)
+    {
+        var contextoDados = new ContextoDados(true);
+        var repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contextoDados);
+        var repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
+
+        var fabricantes = repositorioFabricante.SelecionarRegistros();
+
+        var novoEquipamento = cadastrarVM.ParaEntidade(fabricantes);
+
+        repositorioEquipamento.CadastrarRegistro(novoEquipamento);
+
+        var notificacaoVM = $"Equipamento Cadastrado! O registro \"{novoEquipamento.Nome}\" foi cadastrado com sucesso!";
+
+        return View("Notificacao", notificacaoVM);
+    }
+    [HttpGet("visualizar")]
+    public IActionResult VisualizarEquipamentos()
+    {
+        var contextoDados = new ContextoDados(true);
+        var repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contextoDados);
+
+        var equipamentos = repositorioEquipamento.SelecionarRegistros();
+
+        var visualizarVM = new VisualizarEquipamentosViewModel(equipamentos);
+
+        return View("Visualizar", visualizarVM);
     }
 }
