@@ -8,12 +8,18 @@ using Trabalho4.AP.ModuloChamado;
 namespace Trabalho4.AP.Controllers;
 
 [Route("chamados")]
-public class ControladorChamados : Controller
+public class ControladorChamado : Controller
 {
     private ContextoDados contextoDados;
     private IRepositorioChamado repositorioChamado;
     private IRepositorioEquipamento repositorioEquipamento;
 
+    public ControladorChamado()
+    {
+        contextoDados = new ContextoDados(true);
+        repositorioChamado = new RepositorioChamadoEmArquivo(contextoDados);
+        repositorioEquipamento = new RepositorioEquipamentoEmArquivo(contextoDados);
+    }
 
     [HttpGet("visualizar")]
     public IActionResult Visualizar()
@@ -28,7 +34,7 @@ public class ControladorChamados : Controller
     [HttpGet("cadastrar")]
     public IActionResult Cadastrar()
     {
-        var equipamentos = repositorioEquipamento.SelecionarRegistros();
+        List<Equipamento> equipamentos = repositorioEquipamento.SelecionarRegistros();
 
         var cadastrarVM = new CadastrarChamadoViewModel(equipamentos);
 

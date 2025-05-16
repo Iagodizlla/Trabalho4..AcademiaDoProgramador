@@ -1,7 +1,6 @@
 ﻿using Trabalho4.AP.Extensoes;
 using Trabalho4.AP.ModuloChamado;
 using Trabalho4.AP.ModuloEquipamento;
-using Trabalho4.AP.ModuloFabricante;
 
 namespace Trabalho4.AP.Models;
 
