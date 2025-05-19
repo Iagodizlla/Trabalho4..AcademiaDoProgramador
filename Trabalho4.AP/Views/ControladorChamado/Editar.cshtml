@@ -1,0 +1,53 @@
+﻿@using Trabalho4.AP.Models;
+
+@model EditarChamadoViewModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Edição de Chamado - Gestão de Equipamentos</title>
+</head>
+
+<body>
+    <h1>Gestão de Equipamentos</h1>
+
+    <hr />
+
+    <a href="/">Página Inicial</a> /
+    <a href="/chamados/visualizar">Visualizar Chamados</a>
+
+    <hr />
+
+    <h3>Edição de Chamado</h3>
+
+    <form method="post" action="/chamados/editar/@Model.Id">
+        <label for="Titulo">Titulo</label><br />
+        <input type="text" name="Titulo" value="@Model.Titulo" />
+
+        <br />
+
+        <label for="Descricao">Descricao</label><br />
+        <input type="text" name="Descricao" value="@Model.Descricao" />
+
+        <br />
+
+        <label for="DataAbertura">Data de Abertura</label><br />
+        <input type="date" name="DataAbertura" value="@Model.DataAbertura.ToString(" yyyy-MM-dd")" />
+
+        <br />
+
+        <label for="EquipamentoId">Equipamento de Chamado</label><br />
+        <select name="EquipamentoId" id="EquipamentoId">
+            @foreach (var equipamento in Model.EquipamentosDisponiveis)
+            {
+                <option value="@equipamento.Id" @(equipamento.Id == Model.EquipamentoId ? "selected" : "")>@equipamento.Nome</option>
+            }
+        </select>
+        <hr />
+
+        <button type="submit">Salvar</button>
+
+    </form>
+</body>
+</html>

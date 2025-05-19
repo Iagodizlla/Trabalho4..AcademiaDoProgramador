@@ -88,3 +88,35 @@ public class CadastrarChamadoViewModel : FormularioChamadoViewModel
         }
     }
 }
+public class EditarChamadoViewModel : FormularioChamadoViewModel
+{
+    public int Id { get; set; }
+
+    public EditarChamadoViewModel() { }
+
+    public EditarChamadoViewModel(Chamado chamado, List<Equipamento> equipamentos)
+    {
+        Id = chamado.Id;
+        Titulo = chamado.Titulo;
+        Descricao = chamado.Descricao;
+        DataAbertura = chamado.DataAbertura;
+
+        foreach (var equipamento in equipamentos)
+        {
+            var selecionarVM = new SelecionarEquipamentoViewModel(equipamento.Id, equipamento.Nome);
+
+            EquipamentosDisponiveis.Add(selecionarVM);
+        }
+    }
+}
+public class ExcluirChamadoViewModel
+{
+    public int Id { get; set; }
+    public string Titulo { get; set; }
+
+    public ExcluirChamadoViewModel(int id, string titulo)
+    {
+        Id = id;
+        Titulo = titulo;
+    }
+}

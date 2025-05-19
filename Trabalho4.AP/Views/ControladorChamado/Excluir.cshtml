@@ -1,0 +1,31 @@
+﻿@using Trabalho4.AP.Models;
+
+@model ExcluirChamadoViewModel;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Exclusão de Chamado - Gestão de Equipamentos</title>
+</head>
+
+<body>
+    <h1>Gestão de Equipamentos</h1>
+
+    <hr />
+
+    <a href="/">Página Inicial</a> /
+    <a href="/chamados/visualizar">Visualizar Chamados</a>
+
+    <hr />
+
+    <h3>Exclusão de Chamado</h3>
+
+    <p>Você tem certeza que deseja excluir o registro "@Model.Titulo"?</p>
+
+    <form action="/chamados/excluir/@Model.Id" method="post">
+        <button type="submit">Confirmar</button>
+        <a href="/chamados/visualizar">Voltar</a>
+    </form>
+</body>
+</html>
