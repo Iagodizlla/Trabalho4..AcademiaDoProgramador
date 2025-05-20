@@ -3,30 +3,170 @@
 <head>
     <meta charset="utf-8" />
     <title>Controle de Equipamentos</title>
+
+    <style>
+        :root {
+            --fundo-principal: #1e1e1e;
+            --fundo-secundario: #2c2c2e;
+            --cor-principal: #DB56EB;
+            --cor-secundaria: #b084d1;
+            --cor-borda: #3a3a3c;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--fundo-principal);
+            color: white;
+
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 200px;
+            background-color: var(--fundo-secundario);
+
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        nav > h2 {
+            margin: 0;
+        }
+
+        nav > ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+
+            justify-content: center;
+
+            padding-left: 0;
+
+            list-style: none;
+        }
+
+        .link-navegacao {
+            color: var(--cor-principal);
+
+            text-decoration: none;
+
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .link-navegacao:hover {
+            color: var(--cor-secundaria);
+        }
+
+        header {
+            padding: 0 200px;
+        }
+
+        main { 
+            /* padding: vertical horizontal; */
+            /* padding: top right bottom left; */
+            padding: 0 200px;
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .card {
+            border: 1px solid var(--cor-borda);
+            border-radius: 15px;
+
+            padding: 0 10px;
+
+            width: 350px;
+            height: 150px;
+            background-color: var(--fundo-secundario);
+
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            background-color: #3d3d42;
+        }
+
+        .card h3 {
+            color: var(--cor-principal);
+        }
+
+        .card p {
+            color: #ffffff;
+        }
+
+        /* Media query */
+        @@media (max-width: 768px) {
+            nav {
+                padding: 20px;
+
+                justify-content: center;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+
+    </style>
+
 </head>
 <body>
-    <h1>Controle de Equipamentos</h1>
+    <nav>
+        <h2>Gestão de Equipamentos</h2>
 
-    <h2>Controle de Fabricantes</h2>
-    <ul>
-        <li><a href="/fabricantes/cadastrar">Cadastrar novo Fabricante</a></li>
-        <li><a href="/fabricantes/visualizar">Visualizar Fabricantes</a></li>
-    </ul>
+        <ul>
+            <li><a class="link-navegacao" href="/fabricantes/visualizar">Fabricantes</a></li>
+            <li><a class="link-navegacao" href="/equipamentos/visualizar">Equipamentos</a></li>
+            <li><a class="link-navegacao" href="/chamados/visualizar">Chamados</a></li>
+        </ul>
+    </nav>
 
-    <hr />
+    <header>
+        <h3>Página Inicial</h3>
+    </header>
 
-    <h2>Controle de Equipamentos</h2>
-    <ul>
-        <li><a href="/equipamentos/cadastrar">Cadastrar novo Equipamento</a></li>
-        <li><a href="/equipamentos/visualizar">Visualizar Equipamentos</a></li>
-    </ul>
+    <main>
+        <a href="/fabricantes/visualizar">
+            <div class="card">
+                <h3>Fabricantes</h3>
 
-    <hr />
+                <p>Gerencie os Fabricantes de Equipamentos</p>
+            </div>
+        </a>
 
-    <h2>Controle de Chamados</h2>
-    <ul>
-        <li><a href="/chamados/cadastrar">Cadastrar novo Chamado</a></li>
-        <li><a href="/chamados/visualizar">Visualizar Chamados</a></li>
-    </ul>
+        <a href="/equipamentos/visualizar">
+            <div class="card">
+                <h3>Equipamentos</h3>
+
+                <p>Gerencie os Equipamentos</p>
+            </div>
+        </a>
+
+        <a href="/chamados/visualizar">
+            <div class="card">
+                <h3>Chamados</h3>
+
+                <p>Gerencie os Chamados de Manutenção</p>
+            </div>
+        </a>
+
+    </main>
 </body>
 </html>
