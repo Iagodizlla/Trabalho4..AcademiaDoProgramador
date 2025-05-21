@@ -8,24 +8,152 @@
 <head>
     <meta charset="utf-8" />
     <title>Excluir Fabricantes/Controle de Equipamentos</title>
+
+    <style>
+        :root {
+            --fundo-principal: #1e1e1e;
+            --fundo-secundario: #2c2c2e;
+            --cor-principal: #DB56EB;
+            --cor-secundaria: #b084d1;
+            --cor-borda: #3a3a3c;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--fundo-principal);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 200px;
+            background-color: var(--fundo-secundario);
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+            nav > h2 {
+                margin: 0;
+            }
+
+            nav > ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+                padding-left: 0;
+                list-style: none;
+            }
+
+        .link-navegacao {
+            color: var(--cor-principal);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+            .link-navegacao:hover {
+                color: var(--cor-secundaria);
+            }
+
+        header {
+            padding: 0 200px;
+        }
+
+        main {
+            /* padding: vertical horizontal; */
+            /* padding: top right bottom left; */
+            padding: 0 200px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .card {
+            border: 1px solid var(--cor-borda);
+            border-radius: 15px;
+            padding: 0 10px;
+            width: 350px;
+            height: 150px;
+            background-color: var(--fundo-secundario);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+            .card:hover {
+                transform: scale(1.02);
+                background-color: #3d3d42;
+            }
+
+            .card h3 {
+                color: var(--cor-principal);
+            }
+
+            .card p {
+                color: #ffffff;
+            }
+
+        .botoes-interacao {
+            margin-top: 20px;
+            margin-left: auto;
+        }
+
+            .botoes-interacao a[type="button"] {
+                padding: 5px 10px;
+                color: black;
+                background-color: #b084d1;
+                border: 1px solid #b084d1;
+                border-radius: 9px;
+            }
+
+        /* Media query */
+        @@media (max-width: 768px) {
+            nav {
+                padding: 20px;
+                justify-content: center;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Gestão de Equipamentos</h1>
+    <nav>
+        <h2>Controle de Equipamentos</h2>
+        <ul>
+            <li><a class="link-navegacao" href="/">Página Inicial</a></li>
+            <li><a class="link-navegacao" href="/fabricantes/visualizar">Visualizar</a></li>
+        </ul>
+    </nav>
 
-    <hr />
+    <header>
+        <h3>Excluir Fabricante</h3>
+    </header>
+    <main>
+        <div class="card">
+            <p>Você tem certeza que deseja excluir o fabricante "@Model.Nome"?</p><br />
 
-    <a href="/">Página Inicial</a> /
-    <a href="/fabricantes/visualizar">Visualizar Fabricantes</a>
-
-    <hr />
-
-    <h3>Exclusão de Fabricantes</h3>
-
-    <p>Você tem certeza que deseja excluir o registro "@Model.Nome"?</p>
-
-    <form action="/fabricantes/excluir/@Model.Id" method="post">
-        <button type="submit">Confirmar</button>
-        <a href="/fabricantes/visualizar">Voltar</a>
-    </form>
+            <form action="/fabricantes/excluir/@Model.Id" method="post">
+                <div class="botoes-interacao">
+                    <button type="submit">Confirmar</button>
+                    <a type="button" href="/fabricantes/visualizar">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    
 </body>
 </html>
