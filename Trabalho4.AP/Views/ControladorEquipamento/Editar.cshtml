@@ -7,51 +7,175 @@
 <head>
     <meta charset="utf-8" />
     <title>Edição de Equipamento - Gestão de Equipamentos</title>
-</head>
+    <style>
+        :root {
+            --fundo-principal: #1e1e1e;
+            --fundo-secundario: #2c2c2e;
+            --cor-principal: #DB56EB;
+            --cor-secundaria: #b084d1;
+            --cor-borda: #3a3a3c;
+        }
 
-<body>
-    <h1>Gestão de Equipamentos</h1>
+        body {
+            margin: 0;
+            background-color: var(--fundo-principal);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-    <hr />
+        a {
+            text-decoration: none;
+        }
 
-    <a href="/">Página Inicial</a> /
-    <a href="/equipamentos/visualizar">Visualizar Equipamentos</a>
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 200px;
+            background-color: var(--fundo-secundario);
+            border-bottom: 1px solid var(--cor-borda);
+        }
 
-    <hr />
-
-    <h3>Edição de Equipamento</h3>
-
-    <form action="/equipamentos/editar/@Model.Id" method="post">
-        <label for="Nome">Nome do Equipamento:</label>
-        <br />
-        <input type="text" name="Nome" id="Nome" value="@Model.Nome" />
-
-        <br />
-
-        <label for="PrecoAquisicao">Preço de Aquisição do Equipamento:</label>
-        <br />
-        <input type="text" name="PrecoAquisicao" id="PrecoAquisicao" value="@Model.PrecoAquisicao.ToString(" N2")" />
-
-        <br />
-
-        <label for="DataFabricacao">Data de Fabricação do Equipamento:</label>
-        <br />
-        <input type="date" name="DataFabricacao" id="DataFabricacao" value="@Model.DataFabricacao.ToString(" yyyy-MM-dd")" />
-
-        <br />
-
-        <label for="FabricanteId">Fabricante do Equipamento:</label>
-        <br />
-        <select name="FabricanteId" id="FabricanteId">
-            @foreach (var f in @Model.FabricantesDisponiveis)
-            {
-            <option value="@f.Id" @(f.Id==Model.FabricanteId ? "selected" : "" )>@f.Nome</option>
+            nav > h2 {
+                margin: 0;
             }
-        </select>
 
-        <hr />
+            nav > ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+                padding-left: 0;
+                list-style: none;
+            }
 
-        <button type="submit">Gravar</button>
-    </form>
+        .link-navegacao {
+            color: var(--cor-principal);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+            .link-navegacao:hover {
+                color: var(--cor-secundaria);
+            }
+
+        header {
+            padding: 0 200px;
+        }
+
+        main {
+            /* padding: vertical horizontal; */
+            /* padding: top right bottom left; */
+            padding: 0 200px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .card {
+            border: 1px solid var(--cor-borda);
+            border-radius: 15px;
+            padding: 0 10px;
+            width: 350px;
+            height: 240px;
+            background-color: var(--fundo-secundario);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+            .card:hover {
+                transform: scale(1.02);
+                background-color: #3d3d42;
+            }
+
+            .card h3 {
+                color: var(--cor-principal);
+            }
+
+            .card p {
+                color: #ffffff;
+            }
+
+        .botoes-interacao {
+            margin-top: 20px;
+            margin-left: auto;
+        }
+
+        .botao-padrao {
+            all: unset; /* zera os estilos padrão */
+            display: inline-block;
+            padding: 6px 12px;
+            color: black;
+            background-color: #b084d1;
+            border: 1px solid #b084d1;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+        }
+
+
+            .botao-padrao:hover {
+                background-color: var(--cor-secundaria);
+            }
+
+        /* Media query */
+        @@media (max-width: 768px) {
+            nav {
+                padding: 20px;
+                justify-content: center;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>Controle de Equipamentos</h2>
+        <ul>
+            <li><a class="link-navegacao" href="/">Página Inicial</a></li>
+            <li><a class="link-navegacao" href="/equipamentos/visualizar">Visualizar</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h3>Editar Equipamento</h3>
+    </header>
+
+    <main>
+        <div class="card">
+            <form action="/equipamentos/editar/@Model.Id" method="post">
+                <label for="Nome">Nome do Equipamento:</label><br />
+                <input type="text" name="Nome" id="Nome" value="@Model.Nome" /><br />
+
+                <label for="PrecoAquisicao">Preço de Aquisição do Equipamento:</label><br />
+                <input type="text" name="PrecoAquisicao" id="PrecoAquisicao" value="@Model.PrecoAquisicao.ToString(" N2")" /><br />
+
+                <label for="DataFabricacao">Data de Fabricação do Equipamento:</label><br />
+                <input type="date" name="DataFabricacao" id="DataFabricacao" value="@Model.DataFabricacao.ToString(" yyyy-MM-dd")" /><br />
+
+                <label for="FabricanteId">Fabricante do Equipamento:</label><br />
+                <select name="FabricanteId" id="FabricanteId">
+                    @foreach (var f in @Model.FabricantesDisponiveis)
+                    {
+                        <option value="@f.Id" @(f.Id==Model.FabricanteId ? "selected" : "" )>@f.Nome</option>
+                    }
+                </select><br /><br />
+
+                <button class="botao-padrao" type="submit">Gravar</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
