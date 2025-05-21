@@ -36,7 +36,7 @@ public class ControladorEquipamento : Controller
     {
         var fabricantes = repositorioFabricante.SelecionarRegistros();
 
-        Equipamento equipamento = cadastrarVM.ParaEntidade(fabricantes);
+        Equipamento equipamento = cadastrarVM.ParaEntidadeE(fabricantes);
 
         repositorioEquipamento.CadastrarRegistro(equipamento);
 
@@ -73,7 +73,7 @@ public class ControladorEquipamento : Controller
     {
         var fabricantes = repositorioFabricante.SelecionarRegistros();
 
-        var equipamentoEditado = editarVM.ParaEntidade(fabricantes);
+        var equipamentoEditado = editarVM.ParaEntidadeE(fabricantes);
 
         var equipamentoOriginal = repositorioEquipamento.SelecionarRegistroPorId(id);
 

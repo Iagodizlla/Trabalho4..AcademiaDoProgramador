@@ -25,7 +25,7 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        Fabricante novoFabricante = cadastrarVM.ParaEntidade();
+        Fabricante novoFabricante = cadastrarVM.ParaEntidadeF();
 
         repositorioFabricante.CadastrarRegistro(novoFabricante);
 
@@ -61,7 +61,7 @@ public class ControladorFabricante : Controller
         ContextoDados contextoDados = new ContextoDados(true);
         IRepositorioFabricante repositorioFabricante = new RepositorioFabricanteEmArquivo(contextoDados);
 
-        Fabricante fabricanteEditado = editarVM.ParaEntidade();
+        Fabricante fabricanteEditado = editarVM.ParaEntidadeF();
 
         repositorioFabricante.EditarRegistro(id, fabricanteEditado);
 

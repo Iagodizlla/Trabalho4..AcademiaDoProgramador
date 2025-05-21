@@ -101,7 +101,7 @@ public class VisualizarEquipamentosViewModel
 
         foreach (Equipamento e in equipamentos)
         {
-            DetalhesEquipamentoViewModel detalhesVM = e.ParaDetalhesVM();
+            DetalhesEquipamentoViewModel detalhesVM = e.ParaDetalhesVME();
 
             Registros.Add(detalhesVM);
         }

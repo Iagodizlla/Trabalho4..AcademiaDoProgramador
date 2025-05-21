@@ -6,7 +6,7 @@ namespace Trabalho4.AP.Extensoes;
 
 public static class EquipamentoExtensions
 {
-    public static Equipamento ParaEntidade(
+    public static Equipamento ParaEntidadeE(
         this FormularioEquipamentoViewModel formularioVM,
         List<Fabricante> fabricantes
     )
@@ -27,7 +27,7 @@ public static class EquipamentoExtensions
         );
     }
 
-    public static DetalhesEquipamentoViewModel ParaDetalhesVM(this Equipamento equipamento)
+    public static DetalhesEquipamentoViewModel ParaDetalhesVME(this Equipamento equipamento)
     {
         return new DetalhesEquipamentoViewModel(
             equipamento.Id,

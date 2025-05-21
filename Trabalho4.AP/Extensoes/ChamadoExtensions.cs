@@ -26,7 +26,7 @@ public static class ChamadoExtensions
         );
     }
 
-    public static DetalhesChamadoViewModel ParaDetalhesVM(this Chamado chamado)
+    public static DetalhesChamadoViewModel ParaDetalhesVMC(this Chamado chamado)
     {
         return new DetalhesChamadoViewModel(
             chamado.Id,

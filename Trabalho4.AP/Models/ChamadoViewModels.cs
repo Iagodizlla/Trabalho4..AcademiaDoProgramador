@@ -40,7 +40,7 @@ public class VisualizarChamadosViewModel
 
         foreach (Chamado c in chamados)
         {
-            DetalhesChamadoViewModel detalhesVM = c.ParaDetalhesVM();
+            DetalhesChamadoViewModel detalhesVM = c.ParaDetalhesVMC();
 
             Registros.Add(detalhesVM);
         }

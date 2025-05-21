@@ -61,7 +61,7 @@ public class VisualizarFabricantesViewModel
     {
         foreach (Fabricante f in fabricantes)
         {
-            DetalhesFabricanteViewModel detalhesVM = f.ParaDetalhesVM();
+            DetalhesFabricanteViewModel detalhesVM = f.ParaDetalhesVMF();
 
             Registros.Add(detalhesVM);
         }
