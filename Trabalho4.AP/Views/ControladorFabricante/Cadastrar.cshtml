@@ -8,31 +8,171 @@
 <head>
     <meta charset="utf-8" />
     <title>Cadastrar Fabricantes/Controle de Equipamentos</title>
+    <style>
+        :root {
+            --fundo-principal: #1e1e1e;
+            --fundo-secundario: #2c2c2e;
+            --cor-principal: #DB56EB;
+            --cor-secundaria: #b084d1;
+            --cor-borda: #3a3a3c;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--fundo-principal);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 200px;
+            background-color: var(--fundo-secundario);
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+            nav > h2 {
+                margin: 0;
+            }
+
+            nav > ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+                padding-left: 0;
+                list-style: none;
+            }
+
+        .link-navegacao {
+            color: var(--cor-principal);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+            .link-navegacao:hover {
+                color: var(--cor-secundaria);
+            }
+
+        header {
+            padding: 0 200px;
+        }
+
+        main {
+            /* padding: vertical horizontal; */
+            /* padding: top right bottom left; */
+            padding: 0 200px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .card {
+            border: 1px solid var(--cor-borda);
+            border-radius: 15px;
+            padding: 0 10px;
+            width: 350px;
+            height: 180px;
+            background-color: var(--fundo-secundario);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+            .card:hover {
+                transform: scale(1.02);
+                background-color: #3d3d42;
+            }
+
+            .card h3 {
+                color: var(--cor-principal);
+            }
+
+            .card p {
+                color: #ffffff;
+            }
+
+        .botoes-interacao {
+            margin-top: 20px;
+            margin-left: auto;
+        }
+
+        .botao-padrao {
+            all: unset; /* zera os estilos padrão */
+            display: inline-block;
+            padding: 6px 12px;
+            color: black;
+            background-color: #b084d1;
+            border: 1px solid #b084d1;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+        }
+
+
+            .botao-padrao:hover {
+                background-color: var(--cor-secundaria);
+            }
+
+        /* Media query */
+        @@media (max-width: 768px) {
+            nav {
+                padding: 20px;
+                justify-content: center;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Controle de Equipamentos</h1>
-    <h2>Cadastro de Fabricante</h2>
+    <nav>
+        <h2>Gestão de Equipamentos</h2>
 
-    <a href="/">Página Inicial</a> /
-    <a href="/fabricantes/visualizar">Visualizar Fabricantes</a>
+        <ul>
+            <li><a class="link-navegacao" href="/fabricantes/visualizar">Fabricantes</a></li>
+            <li><a class="link-navegacao" href="/equipamentos/visualizar">Equipamentos</a></li>
+            <li><a class="link-navegacao" href="/chamados/visualizar">Chamados</a></li>
+        </ul>
+    </nav>
 
-    <form method="post" action="/fabricantes/cadastrar">
-        <label>Nome</label><br />
-        <input type="text" name="nome"/>
+    <header>
+        <h3>Cadastro de Fabricante</h3>
+    </header>
 
-        <br />
+    <main>
+        <div class="card">
+            <form method="post" action="/fabricantes/cadastrar">
 
-        <label>Email </label><br />
-        <input type="text" name="email"/>
+                <label>Nome</label><br />
+                <input type="text" name="nome"/><br />
 
-        <br />
+                <label>Email </label><br />
+                <input type="text" name="email"/><br />
 
-        <label>Telefone</label><br />
-        <input type="text" name="telefone"/>
-        <hr />
+                <label>Telefone</label><br />
+                <input type="text" name="telefone"/><br />
 
-        <button type="submit">Salvar</button>
+                <button class="botao-padrao" type="submit">Salvar</button>
 
-    </form>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
