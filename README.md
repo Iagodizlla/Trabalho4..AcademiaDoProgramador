@@ -9,7 +9,7 @@
 ---
 ## Tecnologias
 
-[![Tecnologias](https://skillicons.dev/icons?i=git,github,cs,dotnet,visualstudio)](https://skillicons.dev)
+[![Tecnologias](https://skillicons.dev/icons?i=git,github,cs,html,css,dotnet,visualstudio)](https://skillicons.dev)
 
 ---
 ## Funcionalidades
